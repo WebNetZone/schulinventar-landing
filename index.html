@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Schulinventar – Inventarverwaltung für Schulen</title>
+  <meta name="description" content="Schluss mit Excel-Chaos. Schulinventar bringt Ordnung in Ihre Geräteverwaltung – sicher, schlank und einfach.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:   #1b4332;
+      --green:        #2d6a4f;
+      --green-mid:    #40916c;
+      --green-light:  #74c69d;
+      --green-pale:   #d8f3dc;
+      --green-faint:  #f0faf4;
+      --text:         #1a2e23;
+      --text-muted:   #4a6558;
+      --line:         #c8e6d0;
+      --white:        #ffffff;
+      --radius:       10px;
+      --shadow:       0 2px 16px rgba(27,67,50,.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'DM Serif Display', serif;
+      line-height: 1.2;
+      color: var(--green-dark);
+    }
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────── */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 62px;
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      color: var(--green-dark);
+      letter-spacing: -.01em;
+    }
+
+    .logo span { color: var(--green-mid); }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, transform .1s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--green-dark);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--green);
+      border: 2px solid var(--green);
+    }
+
+    .btn-outline:hover {
+      background: var(--green-faint);
+      text-decoration: none;
+    }
+
+    .btn-lg {
+      padding: 14px 32px;
+      font-size: 1rem;
+    }
+
+    /* ─── HERO ────────────────────────────────────────────── */
+
+    .hero {
+      background: linear-gradient(160deg, var(--green-faint) 0%, var(--white) 60%);
+      padding: 88px 0 80px;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      background: var(--green-pale);
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      color: var(--green-dark);
+      max-width: 780px;
+      margin: 0 auto 20px;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-mockup {
+      margin-top: 64px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .mockup-frame {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(27,67,50,.12);
+      padding: 24px 28px;
+      max-width: 560px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .mockup-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .mockup-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--line);
+    }
+
+    .mockup-title {
+      font-size: .75rem;
+      color: var(--text-muted);
+      margin-left: 4px;
+    }
+
+    .mockup-rows { display: flex; flex-direction: column; gap: 10px; }
+
+    .mockup-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 14px;
+      background: var(--green-faint);
+      border-radius: 8px;
+      border-left: 3px solid var(--green-mid);
+    }
+
+    .mockup-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .mockup-row-text { flex: 1; }
+
+    .mockup-row-name {
+      font-weight: 600;
+      font-size: .9rem;
+      color: var(--green-dark);
+    }
+
+    .mockup-row-meta {
+      font-size: .78rem;
+      color: var(--text-muted);
+    }
+
+    .mockup-badge {
+      font-size: .72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .badge-out { background: #fef3c7; color: #92400e; }
+    .badge-free { background: var(--green-pale); color: var(--green-dark); }
+
+    /* ─── SECTIONS ────────────────────────────────────────── */
+
+    section { padding: 80px 0; }
+
+    .section-label {
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 600px;
+    }
+
+    .section-header { margin-bottom: 52px; }
+    .section-header.centered { text-align: center; }
+    .section-header.centered .section-sub { margin: 0 auto; }
+
+    /* ─── PROBLEM / LÖSUNG ────────────────────────────────── */
+
+    .problem-solution {
+      background: var(--green-faint);
+    }
+
+    .ps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .ps-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .ps-card.problem { border-top: 3px solid #f59e0b; }
+    .ps-card.solution { border-top: 3px solid var(--green-mid); }
+
+    .ps-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .ps-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 16px;
+    }
+
+    .ps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .95rem;
+      color: var(--text-muted);
+    }
+
+    .ps-list li::before {
+      content: attr(data-icon);
+      flex-shrink: 0;
+      font-size: 1rem;
+      margin-top: 1px;
+    }
+
+    /* ─── FEATURES ────────────────────────────────────────── */
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: box-shadow .2s, transform .2s;
+    }
+
+    .feature-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: .92rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── USP ─────────────────────────────────────────────── */
+
+    .usp { background: var(--green-dark); }
+
+    .usp .section-label { color: var(--green-light); }
+    .usp .section-title { color: var(--white); }
+    .usp .section-sub { color: rgba(255,255,255,.7); }
+
+    .usp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .usp-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+    }
+
+    .usp-icon {
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    .usp-card h3 {
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .usp-card p {
+      font-size: .92rem;
+      color: rgba(255,255,255,.65);
+      line-height: 1.6;
+    }
+
+    .usp-highlight {
+      display: inline-block;
+      color: var(--green-light);
+      font-weight: 600;
+    }
+
+    /* ─── ABLAUF ──────────────────────────────────────────── */
+
+    .ablauf { background: var(--white); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: calc(100% / 6);
+      right: calc(100% / 6);
+      height: 2px;
+      background: var(--line);
+      z-index: 0;
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-num {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--green-pale);
+      border: 2px solid var(--green-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: var(--green-dark);
+    }
+
+    .step h3 {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      font-size: .9rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── PREISE ──────────────────────────────────────────── */
+
+    .preise { background: var(--green-faint); }
+
+    .pricing-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 52px 48px;
+      max-width: 540px;
+      margin: 0 auto;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .pricing-tag {
+      display: inline-block;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      background: var(--green-pale);
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .pricing-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .pricing-card .pricing-sub {
+      font-size: .95rem;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+
+    .pricing-numbers {
+      display: flex;
+      gap: 2px;
+      justify-content: center;
+      align-items: stretch;
+      margin-bottom: 36px;
+    }
+
+    .price-item {
+      flex: 1;
+      padding: 24px 16px;
+      border-radius: 10px;
+      background: var(--green-faint);
+    }
+
+    .price-item .amount {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--green-dark);
+      display: block;
+    }
+
+    .price-item .label {
+      font-size: .82rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .price-divider {
+      width: 1px;
+      background: var(--line);
+      margin: 0 4px;
+    }
+
+    .pricing-includes {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      margin-bottom: 36px;
+    }
+
+    .pricing-includes li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .92rem;
+      color: var(--text-muted);
+    }
+
+    .pricing-includes li::before {
+      content: '✓';
+      color: var(--green-mid);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .pricing-note {
+      font-size: .82rem;
+      color: var(--text-muted);
+      margin-top: 16px;
+    }
+
+    /* ─── KONTAKT ─────────────────────────────────────────── */
+
+    .kontakt { background: var(--white); }
+
+    .kontakt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .kontakt-info h2 { margin-bottom: 16px; }
+
+    .kontakt-info p {
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      font-size: .97rem;
+    }
+
+    .kontakt-detail {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: .92rem;
+      color: var(--text-muted);
+    }
+
+    .kontakt-detail-icon { font-size: 1.2rem; }
+
+    form { display: flex; flex-direction: column; gap: 16px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    label {
+      display: block;
+      font-size: .83rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .93rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color .15s;
+      outline: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--green-mid);
+    }
+
+    textarea { resize: vertical; min-height: 110px; }
+
+    .form-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .form-consent input[type=checkbox] {
+      width: auto;
+      margin-top: 2px;
+      flex-shrink: 0;
+      accent-color: var(--green);
+    }
+
+    .form-consent a { color: var(--green); text-decoration: underline; }
+
+    /* ─── FOOTER ──────────────────────────────────────────── */
+
+    footer {
+      background: var(--green-dark);
+      color: rgba(255,255,255,.6);
+      padding: 40px 0;
+      font-size: .85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,.6);
+      transition: color .15s;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────── */
+
+    @media (max-width: 768px) {
+      section { padding: 56px 0; }
+
+      .ps-grid,
+      .features-grid,
+      .usp-grid,
+      .steps,
+      .kontakt-grid { grid-template-columns: 1fr; }
+
+      .steps::before { display: none; }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .pricing-card { padding: 36px 24px; }
+
+      .hero { padding: 56px 0 48px; }
+
+      .mockup-frame { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .pricing-numbers { flex-direction: column; }
+      .price-divider { width: 100%; height: 1px; margin: 0; }
+      .hero-actions { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <span class="logo">Schul<span>inventar</span></span>
+      <a href="#kontakt" class="btn btn-primary">Demo anfragen</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Inventarverwaltung für Schulen</div>
+    <h1>Schluss mit Excel-Chaos — alle Geräte im Überblick, von jedem Gerät aus.</h1>
+    <p class="hero-sub">Schulinventar ist eine schlanke Web-App für Geräte- und Bücherverwaltung. Kein App-Store, kein Chaos, keine geteilten Daten.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn btn-primary btn-lg">Demo anfragen</a>
+      <a href="#funktionen" class="btn btn-outline btn-lg">Funktionen ansehen</a>
+    </div>
+
+    <div class="hero-mockup">
+      <div class="mockup-frame">
+        <div class="mockup-bar">
+          <div class="mockup-dot"></div>
+          <div class="mockup-dot"></div>
+          <div class="mockup-dot"></div>
+          <span class="mockup-title">Inventar · Alle Geräte</span>
+        </div>
+        <div class="mockup-rows">
+          <div class="mockup-row">
+            <div class="mockup-icon">💻</div>
+            <div class="mockup-row-text">
+              <div class="mockup-row-name">Laptop #14 — Dell Latitude</div>
+              <div class="mockup-row-meta">Ausgeliehen an M. Hoffmann · seit 12.05.</div>
+            </div>
+            <span class="mockup-badge badge-out">Verliehen</span>
+          </div>
+          <div class="mockup-row">
+            <div class="mockup-icon">📱</div>
+            <div class="mockup-row-text">
+              <div class="mockup-row-name">Tablet #03 — iPad 10. Gen.</div>
+              <div class="mockup-row-meta">Raum B204 · zuletzt geprüft 01.06.</div>
+            </div>
+            <span class="mockup-badge badge-free">Verfügbar</span>
+          </div>
+          <div class="mockup-row">
+            <div class="mockup-icon">📚</div>
+            <div class="mockup-row-text">
+              <div class="mockup-row-name">Mathe 8 — Klett (Klassensatz)</div>
+              <div class="mockup-row-meta">3 von 28 ausgeliehen</div>
+            </div>
+            <span class="mockup-badge badge-free">Verfügbar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM / LÖSUNG -->
+<section class="problem-solution" id="problem">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-label">Das Problem</div>
+      <h2 class="section-title">Inventar mit Excel verwalten — das kennen wir alle.</h2>
+      <p class="section-sub">Schulinventar schafft Ordnung, ohne neues Chaos.</p>
+    </div>
+    <div class="ps-grid">
+      <div class="ps-card problem">
+        <div class="ps-icon">📋</div>
+        <h3>Heute: Excel & Papier</h3>
+        <ul class="ps-list">
+          <li data-icon="⚠️">Wer hat gerade Laptop 7? Keiner weiß es sicher.</li>
+          <li data-icon="⚠️">Mehrere Versionen der Liste kursieren im Lehrerzimmer.</li>
+          <li data-icon="⚠️">Defekte werden zu spät erkannt, Geräte „verschwinden".</li>
+          <li data-icon="⚠️">Schuljahresbeginn: stundenlange Zählaktion.</li>
+        </ul>
+      </div>
+      <div class="ps-card solution">
+        <div class="ps-icon">✅</div>
+        <h3>Mit Schulinventar</h3>
+        <ul class="ps-list">
+          <li data-icon="✓">Jede Ausleihe und Rückgabe ist sekundengenau dokumentiert.</li>
+          <li data-icon="✓">Ein Scan mit dem Handy — fertig. Keine doppelte Eingabe.</li>
+          <li data-icon="✓">Alle Lehrerinnen und Lehrer arbeiten auf derselben Basis.</li>
+          <li data-icon="✓">Verwalter behalten den Überblick, ohne alles selbst zu erledigen.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNKTIONEN -->
+<section id="funktionen">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Funktionen</div>
+      <h2 class="section-title">Alles was eine Schule braucht — nichts was sie nicht braucht.</h2>
+      <p class="section-sub">Schulinventar ist bewusst schlank gehalten. Keine überladenen Menüs, keine wochenlange Einarbeitung.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📷</div>
+        <h3>Ausleihe per QR-Scan</h3>
+        <p>Jedes Gerät bekommt einen QR-Code. Ausleihe und Rückgabe per Handy-Kamera — in wenigen Sekunden, ohne Tippen.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🖥️</div>
+        <h3>Geräte und Bücher</h3>
+        <p>Laptops, Tablets, Beamer, Kameras, Klassensätze — alles in einer Anwendung über dieselbe schlanke Logik verwaltet.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📍</div>
+        <h3>Standorte und Räume</h3>
+        <p>Geräte lassen sich Räumen und Standorten zuordnen. So weiß jeder sofort, wo was zu finden ist.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>Läuft überall — als App</h3>
+        <p>Schulinventar ist eine PWA: läuft im Browser, ist auf dem Handy wie eine App installierbar — ohne App-Store, ohne Update-Zwang.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USP -->
+<section class="usp" id="warum">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-label">Warum Schulinventar</div>
+      <h2 class="section-title" style="color:white">Drei Gründe, die den Unterschied machen.</h2>
+    </div>
+    <div class="usp-grid">
+      <div class="usp-card">
+        <div class="usp-icon">🔒</div>
+        <h3>Eigener Server — voller Datenschutz</h3>
+        <p>Jede Schule bekommt einen <span class="usp-highlight">eigenen, isolierten Server</span>. Ihre Daten liegen nicht neben denen anderer Schulen. Täglich automatische Backups, Betrieb in Deutschland.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon">⚡</div>
+        <h3>Schlank und schnell</h3>
+        <p>Schulinventar macht <span class="usp-highlight">genau eine Sache, und die richtig</span>. Keine aufgeblähte Schulverwaltungssuite — nur Inventar. Die App startet in Sekunden, auch auf alten Geräten.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon">🤝</div>
+        <h3>Persönlich und lokal</h3>
+        <p>Kein anonymes Support-Ticket. Ihr Ansprechpartner sitzt in <span class="usp-highlight">Hannover</span>, richtet die Anwendung persönlich ein und ist bei Fragen direkt erreichbar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section class="ablauf" id="ablauf">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-label">So funktioniert's</div>
+      <h2 class="section-title">Drei Schritte bis zum ersten Scan.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Ersteinrichtung durch WebNetZone</h3>
+        <p>Wir richten Ihren Server ein, importieren Ihren Gerätebestand und drucken die QR-Code-Etiketten. Persönlich vor Ort oder remote — wie es Ihnen passt.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Lehrerinnen und Lehrer starten</h3>
+        <p>Kurze Einführung (30 Minuten reichen). Danach können alle Lehrkräfte selbstständig ausleihen und zurückgeben — per Handy, von überall.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Überblick behalten</h3>
+        <p>Der Verwalter sieht jederzeit: Wer hat was? Was fehlt? Was ist defekt? Verlaufsprotokolle, Statusansichten und Erinnerungen halten alles im Griff.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREISE -->
+<section class="preise" id="preise">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-label">Preise</div>
+      <h2 class="section-title">Transparent und fair.</h2>
+      <p class="section-sub">Keine versteckten Kosten, keine Nutzerlimits, keine Überraschungen.</p>
+    </div>
+    <div class="pricing-card">
+      <span class="pricing-tag">Vollzugang · unbegrenzte Nutzer</span>
+      <h3>Schulinventar komplett</h3>
+      <p class="pricing-sub">Einmalige Einrichtung + monatlicher Betrieb inkl. Hosting und Support.</p>
+
+      <div class="pricing-numbers">
+        <div class="price-item">
+          <span class="amount">990 €</span>
+          <div class="label">Einmalig<br>Ersteinrichtung</div>
+        </div>
+        <div class="price-divider"></div>
+        <div class="price-item">
+          <span class="amount">59 €</span>
+          <div class="label">Pro Monat<br>Betrieb & Support</div>
+        </div>
+      </div>
+
+      <ul class="pricing-includes">
+        <li>Eigener Server, isoliert und gesichert</li>
+        <li>Persönliche Einrichtung und Einführung</li>
+        <li>Unbegrenzte Geräte, Bücher und Nutzer</li>
+        <li>Tägliche Backups, Hosting in Deutschland</li>
+        <li>Updates und Weiterentwicklung inklusive</li>
+        <li>Direkter Ansprechpartner, kein Ticketsystem</li>
+      </ul>
+
+      <a href="#kontakt" class="btn btn-primary btn-lg" style="width:100%;text-align:center;">Demo anfragen</a>
+      <p class="pricing-note">Keine Mindestlaufzeit im ersten Monat. Kündigung jederzeit zum Monatsende möglich.</p>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="kontakt" id="kontakt">
+  <div class="container">
+    <div class="kontakt-grid">
+      <div class="kontakt-info">
+        <div class="section-label">Kontakt</div>
+        <h2 class="section-title">Demo anfragen</h2>
+        <p>Schreiben Sie uns kurz — wir melden uns innerhalb eines Werktages und vereinbaren einen unverbindlichen Demo-Termin.</p>
+        <div class="kontakt-detail">
+          <span class="kontakt-detail-icon">📍</span>
+          <span>WebNetZone · Hannover</span>
+        </div>
+        <div class="kontakt-detail">
+          <span class="kontakt-detail-icon">✉️</span>
+          <a href="mailto:info@webnetzone.de">info@webnetzone.de</a>
+        </div>
+        <div class="kontakt-detail">
+          <span class="kontakt-detail-icon">🌐</span>
+          <a href="https://webnetzone.de" target="_blank" rel="noopener">webnetzone.de</a>
+        </div>
+      </div>
+
+      <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <div class="form-row">
+          <div>
+            <label for="name">Ihr Name *</label>
+            <input type="text" id="name" name="name" placeholder="Max Mustermann" required>
+          </div>
+          <div>
+            <label for="schule">Schule *</label>
+            <input type="text" id="schule" name="schule" placeholder="Muster-Gymnasium Hannover" required>
+          </div>
+        </div>
+        <div>
+          <label for="email">E-Mail-Adresse *</label>
+          <input type="email" id="email" name="email" placeholder="m.mustermann@schule.de" required>
+        </div>
+        <div>
+          <label for="nachricht">Nachricht (optional)</label>
+          <textarea id="nachricht" name="nachricht" placeholder="Kurze Beschreibung Ihres Bedarfs, z.B. ca. Anzahl Geräte oder besondere Anforderungen …"></textarea>
+        </div>
+        <div class="form-consent">
+          <input type="checkbox" id="consent" name="consent" required>
+          <label for="consent" style="font-weight:400;margin-bottom:0;">Ich habe die <a href="https://webnetzone.de/datenschutz" target="_blank">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu. *</label>
+        </div>
+        <input type="text" name="_gotcha" style="display:none">
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Anfrage senden</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-logo">Schulinventar</span>
+      <div class="footer-links">
+        <a href="https://webnetzone.de" target="_blank" rel="noopener">webnetzone.de</a>
+        <a href="https://webnetzone.de/impressum" target="_blank" rel="noopener">Impressum</a>
+        <a href="https://webnetzone.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+      </div>
+      <span>© 2025 WebNetZone</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
