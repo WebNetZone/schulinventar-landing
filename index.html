@@ -561,21 +561,6 @@
 
     .kontakt { background: var(--white); }
 
-    .kontakt-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 64px;
-      align-items: start;
-    }
-
-    .kontakt-info h2 { margin-bottom: 16px; }
-
-    .kontakt-info p {
-      color: var(--text-muted);
-      margin-bottom: 28px;
-      font-size: .97rem;
-    }
-
     .kontakt-detail {
       display: flex;
       align-items: center;
@@ -586,55 +571,6 @@
     }
 
     .kontakt-detail-icon { font-size: 1.2rem; }
-
-    form { display: flex; flex-direction: column; gap: 16px; }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-    label {
-      display: block;
-      font-size: .83rem;
-      font-weight: 600;
-      color: var(--green-dark);
-      margin-bottom: 6px;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      padding: 11px 14px;
-      border: 1.5px solid var(--line);
-      border-radius: 6px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: .93rem;
-      color: var(--text);
-      background: var(--white);
-      transition: border-color .15s;
-      outline: none;
-    }
-
-    input:focus, textarea:focus, select:focus {
-      border-color: var(--green-mid);
-    }
-
-    textarea { resize: vertical; min-height: 110px; }
-
-    .form-consent {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: .82rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .form-consent input[type=checkbox] {
-      width: auto;
-      margin-top: 2px;
-      flex-shrink: 0;
-      accent-color: var(--green);
-    }
-
-    .form-consent a { color: var(--green); text-decoration: underline; }
 
     /* ─── FOOTER ──────────────────────────────────────────── */
 
@@ -687,8 +623,6 @@
       .kontakt-grid { grid-template-columns: 1fr; }
 
       .steps::before { display: none; }
-
-      .form-row { grid-template-columns: 1fr; }
 
       .pricing-card { padding: 36px 24px; }
 
@@ -929,81 +863,25 @@
 <!-- KONTAKT -->
 <section class="kontakt" id="kontakt">
   <div class="container">
-    <div class="kontakt-grid">
-      <div class="kontakt-info">
-        <div class="section-label">Kontakt</div>
-        <h2 class="section-title">Demo anfragen</h2>
-        <p>Schreiben Sie uns kurz — wir melden uns innerhalb eines Werktages und vereinbaren einen unverbindlichen Demo-Termin.</p>
-        <div class="kontakt-detail">
-          <span class="kontakt-detail-icon">📍</span>
-          <span>WebNetZone · Hannover</span>
-        </div>
-        <div class="kontakt-detail">
-          <span class="kontakt-detail-icon">✉️</span>
-          <a href="mailto:info@webnetzone.de">info@webnetzone.de</a>
-        </div>
-        <div class="kontakt-detail">
-          <span class="kontakt-detail-icon">🌐</span>
-          <a href="https://webnetzone.de" target="_blank" rel="noopener">webnetzone.de</a>
-        </div>
+    <div class="section-header centered">
+      <div class="section-label">Kontakt</div>
+      <h2 class="section-title">Demo anfragen</h2>
+      <p class="section-sub">Schreiben Sie uns kurz — wir melden uns innerhalb eines Werktages und vereinbaren einen unverbindlichen Demo-Termin.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:8px;">
+      <div class="kontakt-detail">
+        <span class="kontakt-detail-icon">📍</span>
+        <span>WebNetZone · Hannover</span>
       </div>
-
-      <form id="contact-form" action="https://webnetzone.de/schulinventar/contact.php" method="POST">
-        <div class="form-row">
-          <div>
-            <label for="name">Ihr Name *</label>
-            <input type="text" id="name" name="name" placeholder="Max Mustermann" required>
-          </div>
-          <div>
-            <label for="schule">Schule *</label>
-            <input type="text" id="schule" name="schule" placeholder="Muster-Gymnasium Hannover" required>
-          </div>
-        </div>
-        <div>
-          <label for="email">E-Mail-Adresse *</label>
-          <input type="email" id="email" name="email" placeholder="m.mustermann@schule.de" required>
-        </div>
-        <div>
-          <label for="nachricht">Nachricht (optional)</label>
-          <textarea id="nachricht" name="nachricht" placeholder="Kurze Beschreibung Ihres Bedarfs, z.B. ca. Anzahl Geräte oder besondere Anforderungen …"></textarea>
-        </div>
-        <div class="form-consent">
-          <input type="checkbox" id="consent" name="consent" required>
-          <label for="consent" style="font-weight:400;margin-bottom:0;">Ich habe die <a href="https://webnetzone.de/datenschutz" target="_blank">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu. *</label>
-        </div>
-        <input type="text" name="_gotcha" style="display:none">
-        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Anfrage senden</button>
-        <div id="form-msg" style="display:none;margin-top:12px;padding:12px 16px;border-radius:6px;font-size:.9rem;"></div>
-      </form>
-      <script>
-        document.getElementById('contact-form').addEventListener('submit', async function(e) {
-          e.preventDefault();
-          const btn = this.querySelector('button[type=submit]');
-          const msg = document.getElementById('form-msg');
-          btn.disabled = true;
-          btn.textContent = 'Wird gesendet…';
-          try {
-            const res = await fetch(this.action, { method: 'POST', body: new FormData(this) });
-            const data = await res.json();
-            if (data.ok) {
-              msg.style.background = '#d8f3dc';
-              msg.style.color = '#1b4332';
-              msg.textContent = 'Vielen Dank! Wir melden uns innerhalb eines Werktages.';
-              this.reset();
-              btn.textContent = 'Gesendet ✓';
-            } else {
-              throw new Error(data.error || 'Unbekannter Fehler');
-            }
-          } catch (err) {
-            msg.style.background = '#fef3c7';
-            msg.style.color = '#92400e';
-            msg.textContent = 'Fehler beim Senden: ' + err.message;
-            btn.disabled = false;
-            btn.textContent = 'Anfrage senden';
-          }
-          msg.style.display = 'block';
-        });
-      </script>
+      <div class="kontakt-detail">
+        <span class="kontakt-detail-icon">✉️</span>
+        <a href="mailto:info@webnetzone.de">info@webnetzone.de</a>
+      </div>
+      <div class="kontakt-detail">
+        <span class="kontakt-detail-icon">🌐</span>
+        <a href="https://webnetzone.de" target="_blank" rel="noopener">webnetzone.de</a>
+      </div>
+      <a href="mailto:info@webnetzone.de" class="btn btn-primary btn-lg" style="margin-top:8px;">Demo anfragen</a>
     </div>
   </div>
 </section>
