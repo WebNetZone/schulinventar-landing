@@ -948,7 +948,7 @@
         </div>
       </div>
 
-      <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+      <form id="contact-form" action="https://webnetzone.de/schulinventar/contact.php" method="POST">
         <div class="form-row">
           <div>
             <label for="name">Ihr Name *</label>
@@ -973,7 +973,37 @@
         </div>
         <input type="text" name="_gotcha" style="display:none">
         <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Anfrage senden</button>
+        <div id="form-msg" style="display:none;margin-top:12px;padding:12px 16px;border-radius:6px;font-size:.9rem;"></div>
       </form>
+      <script>
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const btn = this.querySelector('button[type=submit]');
+          const msg = document.getElementById('form-msg');
+          btn.disabled = true;
+          btn.textContent = 'Wird gesendet…';
+          try {
+            const res = await fetch(this.action, { method: 'POST', body: new FormData(this) });
+            const data = await res.json();
+            if (data.ok) {
+              msg.style.background = '#d8f3dc';
+              msg.style.color = '#1b4332';
+              msg.textContent = 'Vielen Dank! Wir melden uns innerhalb eines Werktages.';
+              this.reset();
+              btn.textContent = 'Gesendet ✓';
+            } else {
+              throw new Error(data.error || 'Unbekannter Fehler');
+            }
+          } catch (err) {
+            msg.style.background = '#fef3c7';
+            msg.style.color = '#92400e';
+            msg.textContent = 'Fehler beim Senden: ' + err.message;
+            btn.disabled = false;
+            btn.textContent = 'Anfrage senden';
+          }
+          msg.style.display = 'block';
+        });
+      </script>
     </div>
   </div>
 </section>
