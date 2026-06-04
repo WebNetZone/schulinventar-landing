@@ -13,18 +13,18 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green-dark:   #1b4332;
-      --green:        #2d6a4f;
-      --green-mid:    #40916c;
-      --green-light:  #74c69d;
-      --green-pale:   #d8f3dc;
-      --green-faint:  #f0faf4;
-      --text:         #1a2e23;
-      --text-muted:   #4a6558;
-      --line:         #c8e6d0;
-      --white:        #ffffff;
-      --radius:       10px;
-      --shadow:       0 2px 16px rgba(27,67,50,.08);
+      --blue-dark:   #1a3560;
+      --blue:        #2456d4;
+      --blue-mid:    #3a7afe;
+      --blue-light:  #6fb1ff;
+      --blue-pale:   #dbeafe;
+      --blue-faint:  #eff6ff;
+      --text:        #1e293b;
+      --text-muted:  #475569;
+      --line:        #bfdbfe;
+      --white:       #ffffff;
+      --radius:      10px;
+      --shadow:      0 2px 16px rgba(26,53,96,.08);
     }
 
     html { scroll-behavior: smooth; }
@@ -41,10 +41,10 @@
     h1, h2, h3, h4 {
       font-family: 'DM Serif Display', serif;
       line-height: 1.2;
-      color: var(--green-dark);
+      color: var(--blue-dark);
     }
 
-    a { color: var(--green); text-decoration: none; }
+    a { color: var(--blue-mid); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
     .container {
@@ -72,13 +72,23 @@
     }
 
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-family: 'DM Serif Display', serif;
-      font-size: 1.25rem;
-      color: var(--green-dark);
+      font-size: 1.2rem;
+      color: var(--blue-dark);
       letter-spacing: -.01em;
+      text-decoration: none;
     }
 
-    .logo span { color: var(--green-mid); }
+    .logo:hover { text-decoration: none; }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+    }
 
     .btn {
       display: inline-block;
@@ -93,24 +103,24 @@
     }
 
     .btn-primary {
-      background: var(--green);
+      background: var(--blue-mid);
       color: var(--white);
     }
 
     .btn-primary:hover {
-      background: var(--green-dark);
+      background: var(--blue-dark);
       text-decoration: none;
       transform: translateY(-1px);
     }
 
     .btn-outline {
       background: transparent;
-      color: var(--green);
-      border: 2px solid var(--green);
+      color: var(--blue-mid);
+      border: 2px solid var(--blue-mid);
     }
 
     .btn-outline:hover {
-      background: var(--green-faint);
+      background: var(--blue-faint);
       text-decoration: none;
     }
 
@@ -122,7 +132,7 @@
     /* ─── HERO ────────────────────────────────────────────── */
 
     .hero {
-      background: linear-gradient(160deg, var(--green-faint) 0%, var(--white) 60%);
+      background: linear-gradient(160deg, var(--blue-faint) 0%, var(--white) 60%);
       padding: 88px 0 80px;
       text-align: center;
     }
@@ -133,8 +143,8 @@
       font-weight: 600;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: var(--green-mid);
-      background: var(--green-pale);
+      color: var(--blue-mid);
+      background: var(--blue-pale);
       padding: 4px 14px;
       border-radius: 20px;
       margin-bottom: 24px;
@@ -142,7 +152,7 @@
 
     .hero h1 {
       font-size: clamp(2.2rem, 5vw, 3.4rem);
-      color: var(--green-dark);
+      color: var(--blue-dark);
       max-width: 780px;
       margin: 0 auto 20px;
     }
@@ -171,7 +181,7 @@
       background: var(--white);
       border: 1px solid var(--line);
       border-radius: 16px;
-      box-shadow: 0 8px 40px rgba(27,67,50,.12);
+      box-shadow: 0 8px 40px rgba(26,53,96,.12);
       padding: 24px 28px;
       max-width: 560px;
       width: 100%;
@@ -204,9 +214,9 @@
       align-items: center;
       gap: 14px;
       padding: 10px 14px;
-      background: var(--green-faint);
+      background: var(--blue-faint);
       border-radius: 8px;
-      border-left: 3px solid var(--green-mid);
+      border-left: 3px solid var(--blue-mid);
     }
 
     .mockup-icon {
@@ -219,7 +229,7 @@
     .mockup-row-name {
       font-weight: 600;
       font-size: .9rem;
-      color: var(--green-dark);
+      color: var(--blue-dark);
     }
 
     .mockup-row-meta {
@@ -234,8 +244,8 @@
       border-radius: 4px;
     }
 
-    .badge-out { background: #fef3c7; color: #92400e; }
-    .badge-free { background: var(--green-pale); color: var(--green-dark); }
+    .badge-out  { background: #fef3c7; color: #92400e; }
+    .badge-free { background: var(--blue-pale); color: var(--blue-dark); }
 
     /* ─── SECTIONS ────────────────────────────────────────── */
 
@@ -246,7 +256,7 @@
       font-weight: 600;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: var(--green-mid);
+      color: var(--blue-mid);
       margin-bottom: 12px;
     }
 
@@ -267,9 +277,7 @@
 
     /* ─── PROBLEM / LÖSUNG ────────────────────────────────── */
 
-    .problem-solution {
-      background: var(--green-faint);
-    }
+    .problem-solution { background: var(--blue-faint); }
 
     .ps-grid {
       display: grid;
@@ -285,18 +293,12 @@
       box-shadow: var(--shadow);
     }
 
-    .ps-card.problem { border-top: 3px solid #f59e0b; }
-    .ps-card.solution { border-top: 3px solid var(--green-mid); }
+    .ps-card.problem  { border-top: 3px solid #f59e0b; }
+    .ps-card.solution { border-top: 3px solid var(--blue-mid); }
 
-    .ps-icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
-    }
+    .ps-icon { font-size: 2rem; margin-bottom: 16px; }
 
-    .ps-card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 16px;
-    }
+    .ps-card h3 { font-size: 1.25rem; margin-bottom: 16px; }
 
     .ps-list {
       list-style: none;
@@ -341,28 +343,17 @@
       transform: translateY(-2px);
     }
 
-    .feature-icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
-    }
-
-    .feature-card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-    }
-
-    .feature-card p {
-      font-size: .92rem;
-      color: var(--text-muted);
-    }
+    .feature-icon { font-size: 2rem; margin-bottom: 16px; }
+    .feature-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .feature-card p  { font-size: .92rem; color: var(--text-muted); }
 
     /* ─── USP ─────────────────────────────────────────────── */
 
-    .usp { background: var(--green-dark); }
+    .usp { background: var(--blue-dark); }
 
-    .usp .section-label { color: var(--green-light); }
+    .usp .section-label { color: var(--blue-light); }
     .usp .section-title { color: var(--white); }
-    .usp .section-sub { color: rgba(255,255,255,.7); }
+    .usp .section-sub   { color: rgba(255,255,255,.7); }
 
     .usp-grid {
       display: grid;
@@ -377,28 +368,13 @@
       padding: 36px 28px;
     }
 
-    .usp-icon {
-      font-size: 2rem;
-      margin-bottom: 18px;
-    }
+    .usp-icon { font-size: 2rem; margin-bottom: 18px; }
 
-    .usp-card h3 {
-      font-size: 1.1rem;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
+    .usp-card h3 { font-size: 1.1rem; color: var(--white); margin-bottom: 12px; }
 
-    .usp-card p {
-      font-size: .92rem;
-      color: rgba(255,255,255,.65);
-      line-height: 1.6;
-    }
+    .usp-card p { font-size: .92rem; color: rgba(255,255,255,.65); line-height: 1.6; }
 
-    .usp-highlight {
-      display: inline-block;
-      color: var(--green-light);
-      font-weight: 600;
-    }
+    .usp-highlight { display: inline-block; color: var(--blue-light); font-weight: 600; }
 
     /* ─── ABLAUF ──────────────────────────────────────────── */
 
@@ -422,41 +398,29 @@
       z-index: 0;
     }
 
-    .step {
-      text-align: center;
-      padding: 0 24px;
-      position: relative;
-      z-index: 1;
-    }
+    .step { text-align: center; padding: 0 24px; position: relative; z-index: 1; }
 
     .step-num {
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      background: var(--green-pale);
-      border: 2px solid var(--green-light);
+      background: var(--blue-pale);
+      border: 2px solid var(--blue-light);
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 24px;
       font-family: 'DM Serif Display', serif;
       font-size: 1.8rem;
-      color: var(--green-dark);
+      color: var(--blue-dark);
     }
 
-    .step h3 {
-      font-size: 1.05rem;
-      margin-bottom: 10px;
-    }
-
-    .step p {
-      font-size: .9rem;
-      color: var(--text-muted);
-    }
+    .step h3 { font-size: 1.05rem; margin-bottom: 10px; }
+    .step p   { font-size: .9rem; color: var(--text-muted); }
 
     /* ─── PREISE ──────────────────────────────────────────── */
 
-    .preise { background: var(--green-faint); }
+    .preise { background: var(--blue-faint); }
 
     .pricing-card {
       background: var(--white);
@@ -475,17 +439,14 @@
       font-weight: 600;
       letter-spacing: .08em;
       text-transform: uppercase;
-      color: var(--green-mid);
-      background: var(--green-pale);
+      color: var(--blue-mid);
+      background: var(--blue-pale);
       padding: 4px 14px;
       border-radius: 20px;
       margin-bottom: 20px;
     }
 
-    .pricing-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 8px;
-    }
+    .pricing-card h3 { font-size: 1.5rem; margin-bottom: 8px; }
 
     .pricing-card .pricing-sub {
       font-size: .95rem;
@@ -505,27 +466,19 @@
       flex: 1;
       padding: 24px 16px;
       border-radius: 10px;
-      background: var(--green-faint);
+      background: var(--blue-faint);
     }
 
     .price-item .amount {
       font-family: 'DM Serif Display', serif;
       font-size: 2rem;
-      color: var(--green-dark);
+      color: var(--blue-dark);
       display: block;
     }
 
-    .price-item .label {
-      font-size: .82rem;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
+    .price-item .label { font-size: .82rem; color: var(--text-muted); margin-top: 4px; }
 
-    .price-divider {
-      width: 1px;
-      background: var(--line);
-      margin: 0 4px;
-    }
+    .price-divider { width: 1px; background: var(--line); margin: 0 4px; }
 
     .pricing-includes {
       list-style: none;
@@ -546,16 +499,12 @@
 
     .pricing-includes li::before {
       content: '✓';
-      color: var(--green-mid);
+      color: var(--blue-mid);
       font-weight: 700;
       flex-shrink: 0;
     }
 
-    .pricing-note {
-      font-size: .82rem;
-      color: var(--text-muted);
-      margin-top: 16px;
-    }
+    .pricing-note { font-size: .82rem; color: var(--text-muted); margin-top: 16px; }
 
     /* ─── KONTAKT ─────────────────────────────────────────── */
 
@@ -575,7 +524,7 @@
     /* ─── FOOTER ──────────────────────────────────────────── */
 
     footer {
-      background: var(--green-dark);
+      background: var(--blue-dark);
       color: rgba(255,255,255,.6);
       padding: 40px 0;
       font-size: .85rem;
@@ -590,44 +539,30 @@
     }
 
     .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-family: 'DM Serif Display', serif;
       font-size: 1.1rem;
       color: var(--white);
     }
 
-    .footer-links {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
+    .footer-logo svg { width: 24px; height: 24px; }
 
-    .footer-links a {
-      color: rgba(255,255,255,.6);
-      transition: color .15s;
-    }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
 
-    .footer-links a:hover {
-      color: var(--white);
-      text-decoration: none;
-    }
+    .footer-links a { color: rgba(255,255,255,.6); transition: color .15s; }
+    .footer-links a:hover { color: var(--white); text-decoration: none; }
 
     /* ─── RESPONSIVE ──────────────────────────────────────── */
 
     @media (max-width: 768px) {
       section { padding: 56px 0; }
-
-      .ps-grid,
-      .features-grid,
-      .usp-grid,
-      .steps,
-      .kontakt-grid { grid-template-columns: 1fr; }
-
+      .ps-grid, .features-grid, .usp-grid, .steps, .kontakt-grid { grid-template-columns: 1fr; }
       .steps::before { display: none; }
-
+      .form-row { grid-template-columns: 1fr; }
       .pricing-card { padding: 36px 24px; }
-
       .hero { padding: 56px 0 48px; }
-
       .mockup-frame { display: none; }
     }
 
@@ -644,7 +579,28 @@
 <nav>
   <div class="container">
     <div class="nav-inner">
-      <span class="logo">Schul<span>inventar</span></span>
+      <a href="#" class="logo">
+        <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+          <defs>
+            <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#3a7afe"/>
+              <stop offset="1" stop-color="#6fb1ff"/>
+            </linearGradient>
+          </defs>
+          <rect x="6" y="8" width="52" height="48" rx="6" fill="url(#g)"/>
+          <g fill="#ffffff" opacity="0.95">
+            <rect x="12" y="20" width="40" height="4" rx="2"/>
+            <rect x="12" y="32" width="40" height="4" rx="2"/>
+            <rect x="12" y="44" width="40" height="4" rx="2"/>
+            <rect x="12" y="16" width="4" height="36" rx="2"/>
+            <rect x="48" y="16" width="4" height="36" rx="2"/>
+            <rect x="20" y="16" width="8" height="8" rx="1"/>
+            <rect x="28" y="28" width="10" height="8" rx="1"/>
+            <rect x="36" y="40" width="8" height="8" rx="1"/>
+          </g>
+        </svg>
+        Schulinventar
+      </a>
       <a href="#kontakt" class="btn btn-primary">Demo anfragen</a>
     </div>
   </div>
@@ -711,7 +667,7 @@
     <div class="ps-grid">
       <div class="ps-card problem">
         <div class="ps-icon">📋</div>
-        <h3>Heute: Excel & Papier</h3>
+        <h3>Heute: Excel &amp; Papier</h3>
         <ul class="ps-list">
           <li data-icon="⚠️">Wer hat gerade Laptop 7? Keiner weiß es sicher.</li>
           <li data-icon="⚠️">Mehrere Versionen der Liste kursieren im Lehrerzimmer.</li>
@@ -841,7 +797,7 @@
         <div class="price-divider"></div>
         <div class="price-item">
           <span class="amount">59 €</span>
-          <div class="label">Pro Monat<br>Betrieb & Support</div>
+          <div class="label">Pro Monat<br>Betrieb &amp; Support</div>
         </div>
       </div>
 
@@ -890,7 +846,28 @@
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <span class="footer-logo">Schulinventar</span>
+      <div class="footer-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+          <defs>
+            <linearGradient id="fg" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#3a7afe"/>
+              <stop offset="1" stop-color="#6fb1ff"/>
+            </linearGradient>
+          </defs>
+          <rect x="6" y="8" width="52" height="48" rx="6" fill="url(#fg)"/>
+          <g fill="#ffffff" opacity="0.95">
+            <rect x="12" y="20" width="40" height="4" rx="2"/>
+            <rect x="12" y="32" width="40" height="4" rx="2"/>
+            <rect x="12" y="44" width="40" height="4" rx="2"/>
+            <rect x="12" y="16" width="4" height="36" rx="2"/>
+            <rect x="48" y="16" width="4" height="36" rx="2"/>
+            <rect x="20" y="16" width="8" height="8" rx="1"/>
+            <rect x="28" y="28" width="10" height="8" rx="1"/>
+            <rect x="36" y="40" width="8" height="8" rx="1"/>
+          </g>
+        </svg>
+        Schulinventar
+      </div>
       <div class="footer-links">
         <a href="https://webnetzone.de" target="_blank" rel="noopener">webnetzone.de</a>
         <a href="https://webnetzone.de/impressum" target="_blank" rel="noopener">Impressum</a>
