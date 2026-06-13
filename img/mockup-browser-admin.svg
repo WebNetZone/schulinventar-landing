@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" fill="none" font-family="'Segoe UI', system-ui, -apple-system, Roboto, sans-serif">
+  <defs>
+    <linearGradient id="adbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef4ff"/>
+      <stop offset="1" stop-color="#f7faff"/>
+    </linearGradient>
+    <linearGradient id="adside" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3880ff"/>
+      <stop offset="1" stop-color="#2a63d4"/>
+    </linearGradient>
+    <filter id="winShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="20" stdDeviation="26" flood-color="#1f2a44" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect width="760" height="500" rx="30" fill="url(#adbg)"/>
+  <circle cx="660" cy="90" r="110" fill="#3880ff" opacity="0.06"/>
+
+  <!-- Browser-Fenster -->
+  <g filter="url(#winShadow)">
+    <rect x="60" y="50" width="640" height="400" rx="18" fill="#ffffff"/>
+  </g>
+
+  <!-- Titelleiste -->
+  <path d="M60 68a18 18 0 0118-18h584a18 18 0 0118 18v22H60z" fill="#f1f5fc"/>
+  <circle cx="84" cy="71" r="5" fill="#ff5f57"/>
+  <circle cx="102" cy="71" r="5" fill="#febc2e"/>
+  <circle cx="120" cy="71" r="5" fill="#28c840"/>
+  <rect x="150" y="62" width="380" height="18" rx="9" fill="#ffffff" stroke="#e2eafc"/>
+  <circle cx="166" cy="71" r="4" fill="none" stroke="#9bb4e0" stroke-width="1.6"/>
+  <text x="182" y="75" font-size="10.5" fill="#9bb4e0">inventar.deine-schule.de</text>
+
+  <!-- Sidebar -->
+  <path d="M60 90h150v360H78a18 18 0 01-18-18z" fill="url(#adside)"/>
+  <rect x="84" y="112" width="30" height="30" rx="8" fill="#ffffff" opacity="0.9"/>
+  <rect x="91" y="121" width="16" height="11" rx="2" fill="#3880ff"/>
+  <text x="124" y="132" font-size="13" font-weight="800" fill="#ffffff">Inventar</text>
+
+  <rect x="78" y="170" width="114" height="34" rx="9" fill="#ffffff" opacity="0.18"/>
+  <rect x="92" y="182" width="14" height="11" rx="2" fill="#ffffff"/>
+  <text x="116" y="191" font-size="11.5" font-weight="700" fill="#ffffff">Dashboard</text>
+
+  <g fill="#dbe7ff" opacity="0.85">
+    <rect x="92" y="222" width="14" height="11" rx="2"/>
+    <text x="116" y="231" font-size="11.5" fill="#eaf1ff">Geräte</text>
+    <rect x="92" y="258" width="14" height="11" rx="2"/>
+    <text x="116" y="267" font-size="11.5" fill="#eaf1ff">Ausleihen</text>
+    <rect x="92" y="294" width="14" height="11" rx="2"/>
+    <text x="116" y="303" font-size="11.5" fill="#eaf1ff">Nutzer</text>
+    <rect x="92" y="330" width="14" height="11" rx="2"/>
+    <text x="116" y="339" font-size="11.5" fill="#eaf1ff">Etiketten</text>
+  </g>
+
+  <!-- Hauptbereich -->
+  <text x="234" y="128" font-size="17" font-weight="800" fill="#1f2a44">Übersicht</text>
+  <rect x="566" y="112" width="110" height="30" rx="15" fill="#3880ff"/>
+  <text x="621" y="131" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">+ Gerät anlegen</text>
+
+  <!-- Statistik-Karten -->
+  <g>
+    <rect x="234" y="158" width="138" height="78" rx="14" fill="#f7faff" stroke="#eef2f9"/>
+    <circle cx="258" cy="184" r="14" fill="#eef4ff"/>
+    <rect x="251" y="180" width="14" height="9" rx="2" fill="#3880ff"/>
+    <text x="252" y="214" font-size="24" font-weight="800" fill="#1f2a44">248</text>
+    <text x="252" y="230" font-size="10.5" fill="#7c89a3">Geräte gesamt</text>
+  </g>
+  <g>
+    <rect x="385" y="158" width="138" height="78" rx="14" fill="#f7faff" stroke="#eef2f9"/>
+    <circle cx="409" cy="184" r="14" fill="#fdeede"/>
+    <circle cx="409" cy="184" r="5" fill="#f0992b"/>
+    <text x="403" y="214" font-size="24" font-weight="800" fill="#1f2a44">37</text>
+    <text x="403" y="230" font-size="10.5" fill="#7c89a3">Verliehen</text>
+  </g>
+  <g>
+    <rect x="536" y="158" width="140" height="78" rx="14" fill="#f7faff" stroke="#eef2f9"/>
+    <circle cx="560" cy="184" r="14" fill="#e3f9ec"/>
+    <circle cx="560" cy="181" r="4" fill="#1eb85f"/>
+    <path d="M553 190a7 7 0 0114 0z" fill="#1eb85f"/>
+    <text x="554" y="214" font-size="24" font-weight="800" fill="#1f2a44">52</text>
+    <text x="554" y="230" font-size="10.5" fill="#7c89a3">Lehrkräfte</text>
+  </g>
+
+  <!-- Tabelle -->
+  <rect x="234" y="252" width="442" height="178" rx="14" fill="#ffffff" stroke="#eef2f9"/>
+  <text x="252" y="278" font-size="12.5" font-weight="800" fill="#1f2a44">Letzte Geräte</text>
+  <line x1="234" y1="292" x2="676" y2="292" stroke="#eef2f9"/>
+
+  <g>
+    <!-- Zeile 1 -->
+    <rect x="252" y="304" width="28" height="28" rx="7" fill="#eef4ff"/>
+    <rect x="258" y="312" width="16" height="11" rx="2" fill="#3880ff"/>
+    <rect x="294" y="310" width="120" height="8" rx="4" fill="#1f2a44"/>
+    <rect x="294" y="324" width="70" height="6" rx="3" fill="#cdd8ea"/>
+    <rect x="588" y="310" width="72" height="20" rx="10" fill="#e3f9ec"/>
+    <text x="624" y="324" font-size="9.5" font-weight="700" fill="#15a052" text-anchor="middle">Verfügbar</text>
+    <!-- Zeile 2 -->
+    <rect x="252" y="344" width="28" height="28" rx="7" fill="#eef4ff"/>
+    <rect x="262" y="350" width="9" height="16" rx="2" fill="#3880ff"/>
+    <rect x="294" y="350" width="100" height="8" rx="4" fill="#1f2a44"/>
+    <rect x="294" y="364" width="84" height="6" rx="3" fill="#cdd8ea"/>
+    <rect x="592" y="350" width="68" height="20" rx="10" fill="#fdeede"/>
+    <text x="626" y="364" font-size="9.5" font-weight="700" fill="#d97f17" text-anchor="middle">Verliehen</text>
+    <!-- Zeile 3 -->
+    <rect x="252" y="384" width="28" height="28" rx="7" fill="#eef4ff"/>
+    <rect x="258" y="392" width="16" height="11" rx="2" fill="#3880ff"/>
+    <rect x="294" y="390" width="134" height="8" rx="4" fill="#1f2a44"/>
+    <rect x="294" y="404" width="60" height="6" rx="3" fill="#cdd8ea"/>
+    <rect x="588" y="390" width="72" height="20" rx="10" fill="#e3f9ec"/>
+    <text x="624" y="404" font-size="9.5" font-weight="700" fill="#15a052" text-anchor="middle">Verfügbar</text>
+  </g>
+</svg>

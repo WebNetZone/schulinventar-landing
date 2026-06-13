@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 300" fill="none" font-family="'Segoe UI', system-ui, -apple-system, Roboto, sans-serif">
+  <defs>
+    <linearGradient id="invbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef4ff"/>
+      <stop offset="1" stop-color="#f7faff"/>
+    </linearGradient>
+    <filter id="invShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#2f6fe0" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <rect width="380" height="300" rx="28" fill="url(#invbg)"/>
+  <circle cx="64" cy="60" r="64" fill="#3880ff" opacity="0.07"/>
+
+  <!-- Hintere Karte -->
+  <g filter="url(#invShadow)" opacity="0.55">
+    <rect x="86" y="62" width="208" height="58" rx="14" fill="#ffffff"/>
+  </g>
+  <!-- Mittlere Karte -->
+  <g filter="url(#invShadow)" opacity="0.8">
+    <rect x="74" y="92" width="232" height="62" rx="15" fill="#ffffff"/>
+  </g>
+
+  <!-- Vordere Karte 1 -->
+  <g filter="url(#invShadow)">
+    <rect x="62" y="128" width="256" height="68" rx="16" fill="#ffffff"/>
+  </g>
+  <rect x="76" y="142" width="40" height="40" rx="11" fill="#eef4ff"/>
+  <g stroke="#3880ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <rect x="85" y="152" width="22" height="14" rx="2"/>
+    <line x1="81" y1="172" x2="111" y2="172"/>
+  </g>
+  <rect x="128" y="148" width="96" height="9" rx="4.5" fill="#1f2a44"/>
+  <rect x="128" y="165" width="60" height="7" rx="3.5" fill="#cdd8ea"/>
+  <rect x="248" y="151" width="56" height="20" rx="10" fill="#e3f9ec"/>
+  <circle cx="262" cy="161" r="3.2" fill="#1eb85f"/>
+  <text x="270" y="165" font-size="10" font-weight="700" fill="#15a052">Frei</text>
+
+  <!-- Vordere Karte 2 -->
+  <g filter="url(#invShadow)">
+    <rect x="62" y="204" width="256" height="68" rx="16" fill="#ffffff"/>
+  </g>
+  <rect x="76" y="218" width="40" height="40" rx="11" fill="#eef4ff"/>
+  <g stroke="#3880ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <rect x="89" y="226" width="16" height="24" rx="3"/>
+  </g>
+  <circle cx="97" cy="246" r="1.5" fill="#3880ff"/>
+  <rect x="128" y="224" width="80" height="9" rx="4.5" fill="#1f2a44"/>
+  <rect x="128" y="241" width="52" height="7" rx="3.5" fill="#cdd8ea"/>
+  <rect x="226" y="227" width="80" height="20" rx="10" fill="#fdeede"/>
+  <circle cx="240" cy="237" r="3.2" fill="#f0992b"/>
+  <text x="249" y="241" font-size="10" font-weight="700" fill="#d97f17">Verliehen</text>
+</svg>

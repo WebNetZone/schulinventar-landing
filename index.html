@@ -133,8 +133,14 @@
 
     .hero {
       background: linear-gradient(160deg, var(--blue-faint) 0%, var(--white) 60%);
-      padding: 88px 0 80px;
-      text-align: center;
+      padding: 80px 0 72px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
     }
 
     .hero-eyebrow {
@@ -151,101 +157,36 @@
     }
 
     .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-size: clamp(2rem, 4vw, 3.2rem);
       color: var(--blue-dark);
-      max-width: 780px;
-      margin: 0 auto 20px;
+      margin-bottom: 20px;
     }
 
     .hero-sub {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
-      max-width: 580px;
-      margin: 0 auto 40px;
+      max-width: 480px;
+      margin-bottom: 40px;
     }
 
     .hero-actions {
       display: flex;
       gap: 14px;
-      justify-content: center;
       flex-wrap: wrap;
     }
 
-    .hero-mockup {
-      margin-top: 64px;
+    .hero-visual {
       display: flex;
       justify-content: center;
+      align-items: center;
     }
 
-    .mockup-frame {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      box-shadow: 0 8px 40px rgba(26,53,96,.12);
-      padding: 24px 28px;
-      max-width: 560px;
+    .hero-visual img {
       width: 100%;
-      text-align: left;
+      max-width: 340px;
+      height: auto;
+      filter: drop-shadow(0 16px 48px rgba(26,53,96,.18));
     }
-
-    .mockup-bar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .mockup-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--line);
-    }
-
-    .mockup-title {
-      font-size: .75rem;
-      color: var(--text-muted);
-      margin-left: 4px;
-    }
-
-    .mockup-rows { display: flex; flex-direction: column; gap: 10px; }
-
-    .mockup-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 10px 14px;
-      background: var(--blue-faint);
-      border-radius: 8px;
-      border-left: 3px solid var(--blue-mid);
-    }
-
-    .mockup-icon {
-      font-size: 1.3rem;
-      flex-shrink: 0;
-    }
-
-    .mockup-row-text { flex: 1; }
-
-    .mockup-row-name {
-      font-weight: 600;
-      font-size: .9rem;
-      color: var(--blue-dark);
-    }
-
-    .mockup-row-meta {
-      font-size: .78rem;
-      color: var(--text-muted);
-    }
-
-    .mockup-badge {
-      font-size: .72rem;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 4px;
-    }
-
-    .badge-out  { background: #fef3c7; color: #92400e; }
-    .badge-free { background: var(--blue-pale); color: var(--blue-dark); }
 
     /* ─── SECTIONS ────────────────────────────────────────── */
 
@@ -343,9 +284,32 @@
       transform: translateY(-2px);
     }
 
+    .feature-img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      margin-bottom: 20px;
+      background: var(--blue-faint);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
     .feature-icon { font-size: 2rem; margin-bottom: 16px; }
     .feature-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
     .feature-card p  { font-size: .92rem; color: var(--text-muted); }
+
+    /* ─── MOCKUP ──────────────────────────────────────────── */
+
+    .mockup-section { background: var(--blue-faint); }
+
+    .mockup-browser {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      display: block;
+      border-radius: 12px;
+      box-shadow: 0 12px 48px rgba(26,53,96,.14);
+    }
 
     /* ─── USP ─────────────────────────────────────────────── */
 
@@ -558,12 +522,12 @@
 
     @media (max-width: 768px) {
       section { padding: 56px 0; }
-      .ps-grid, .features-grid, .usp-grid, .steps, .kontakt-grid { grid-template-columns: 1fr; }
-      .steps::before { display: none; }
-      .form-row { grid-template-columns: 1fr; }
-      .pricing-card { padding: 36px 24px; }
       .hero { padding: 56px 0 48px; }
-      .mockup-frame { display: none; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .ps-grid, .features-grid, .usp-grid, .steps { grid-template-columns: 1fr; }
+      .steps::before { display: none; }
+      .pricing-card { padding: 36px 24px; }
     }
 
     @media (max-width: 480px) {
@@ -609,48 +573,18 @@
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <div class="hero-eyebrow">Inventarverwaltung für Schulen</div>
-    <h1>Schluss mit Excel-Chaos — alle Geräte im Überblick, von jedem Gerät aus.</h1>
-    <p class="hero-sub">Schulinventar ist eine schlanke Web-App für Geräte- und Bücherverwaltung. Kein App-Store, kein Chaos, keine geteilten Daten.</p>
-    <div class="hero-actions">
-      <a href="#kontakt" class="btn btn-primary btn-lg">Demo anfragen</a>
-      <a href="#funktionen" class="btn btn-outline btn-lg">Funktionen ansehen</a>
-    </div>
-
-    <div class="hero-mockup">
-      <div class="mockup-frame">
-        <div class="mockup-bar">
-          <div class="mockup-dot"></div>
-          <div class="mockup-dot"></div>
-          <div class="mockup-dot"></div>
-          <span class="mockup-title">Inventar · Alle Geräte</span>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow">Inventarverwaltung für Schulen</div>
+        <h1>Schluss mit Excel-Chaos — alle Geräte im Überblick, von jedem Gerät aus.</h1>
+        <p class="hero-sub">Schulinventar ist eine schlanke Web-App für Geräte- und Bücherverwaltung. Kein App-Store, kein Chaos, keine geteilten Daten.</p>
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn btn-primary btn-lg">Demo anfragen</a>
+          <a href="#funktionen" class="btn btn-outline btn-lg">Funktionen ansehen</a>
         </div>
-        <div class="mockup-rows">
-          <div class="mockup-row">
-            <div class="mockup-icon">💻</div>
-            <div class="mockup-row-text">
-              <div class="mockup-row-name">Laptop #14 — Dell Latitude</div>
-              <div class="mockup-row-meta">Ausgeliehen an M. Hoffmann · seit 12.05.</div>
-            </div>
-            <span class="mockup-badge badge-out">Verliehen</span>
-          </div>
-          <div class="mockup-row">
-            <div class="mockup-icon">📱</div>
-            <div class="mockup-row-text">
-              <div class="mockup-row-name">Tablet #03 — iPad 10. Gen.</div>
-              <div class="mockup-row-meta">Raum B204 · zuletzt geprüft 01.06.</div>
-            </div>
-            <span class="mockup-badge badge-free">Verfügbar</span>
-          </div>
-          <div class="mockup-row">
-            <div class="mockup-icon">📚</div>
-            <div class="mockup-row-text">
-              <div class="mockup-row-name">Mathe 8 — Klett (Klassensatz)</div>
-              <div class="mockup-row-meta">3 von 28 ausgeliehen</div>
-            </div>
-            <span class="mockup-badge badge-free">Verfügbar</span>
-          </div>
-        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="img/hero-app-phone.svg" alt="Schulinventar App auf dem Smartphone">
       </div>
     </div>
   </div>
@@ -699,19 +633,19 @@
     </div>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon">📷</div>
+        <img src="img/feature-qr-scan.svg" alt="QR-Code scannen" class="feature-img">
         <h3>Ausleihe per QR-Scan</h3>
         <p>Jedes Gerät bekommt einen QR-Code. Ausleihe und Rückgabe per Handy-Kamera — in wenigen Sekunden, ohne Tippen.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🖥️</div>
+        <img src="img/feature-inventar.svg" alt="Inventar verwalten" class="feature-img">
         <h3>Geräte und Bücher</h3>
         <p>Laptops, Tablets, Beamer, Kameras, Klassensätze — alles in einer Anwendung über dieselbe schlanke Logik verwaltet.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📍</div>
-        <h3>Standorte und Räume</h3>
-        <p>Geräte lassen sich Räumen und Standorten zuordnen. So weiß jeder sofort, wo was zu finden ist.</p>
+        <img src="img/feature-ausleihe.svg" alt="Geräte ausleihen" class="feature-img">
+        <h3>Ausleihe mit Rückgabe-Termin</h3>
+        <p>Geräte lassen sich mit Rückgabedatum verleihen. So weiß jeder sofort: wer hat was, und bis wann.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🌐</div>
@@ -719,6 +653,18 @@
         <p>Schulinventar ist eine PWA: läuft im Browser, ist auf dem Handy wie eine App installierbar — ohne App-Store, ohne Update-Zwang.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- MOCKUP -->
+<section class="mockup-section">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-label">Einblick</div>
+      <h2 class="section-title">So sieht die Verwaltungsoberfläche aus.</h2>
+      <p class="section-sub">Übersichtlich, schnell, ohne Einarbeitungsaufwand.</p>
+    </div>
+    <img src="img/mockup-browser-admin.svg" alt="Schulinventar Admin-Oberfläche" class="mockup-browser">
   </div>
 </section>
 
