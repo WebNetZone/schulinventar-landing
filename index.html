@@ -294,6 +294,31 @@
       padding: 16px;
     }
 
+    .feature-emoji {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      margin-bottom: 20px;
+      background: var(--blue-faint);
+      border-radius: 8px;
+    }
+
+    .feature-badge {
+      display: inline-block;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      background: var(--blue-pale);
+      padding: 2px 9px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
     .feature-icon { font-size: 2rem; margin-bottom: 16px; }
     .feature-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
     .feature-card p  { font-size: .92rem; color: var(--text-muted); }
@@ -577,7 +602,7 @@
       <div class="hero-text">
         <div class="hero-eyebrow">Inventarverwaltung für Schulen</div>
         <h1>Inventar und Ausleihe für Schulen — so einfach war's noch nie.</h1>
-        <p class="hero-sub">Schulinventar ist eine schlanke Web-App für Geräte- und Bücherverwaltung. Kein App-Store, kein Chaos, keine geteilten Daten.</p>
+        <p class="hero-sub">Schulinventar ist eine schlanke Web-App für Geräte- und Bücherverwaltung. Installierbar wie eine App, ganz ohne App-Store — und Ihre Daten bleiben auf Ihrem eigenen Server.</p>
         <div class="hero-actions">
           <a href="#kontakt" class="btn btn-primary btn-lg">Demo anfragen</a>
           <a href="#funktionen" class="btn btn-outline btn-lg">Funktionen ansehen</a>
@@ -633,9 +658,27 @@
     </div>
     <div class="features-grid">
       <div class="feature-card">
+        <div class="feature-emoji">📸</div>
+        <span class="feature-badge">Neu</span>
+        <h3>Geräte per Foto erfassen</h3>
+        <p>Einfach ein Foto machen — die App erkennt das Gerät und füllt Name, Kategorie und Standort automatisch aus. Sie prüfen nur noch kurz. So ist der Bestand in Rekordzeit erfasst.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">📖</div>
+        <span class="feature-badge">Neu</span>
+        <h3>Bücher per ISBN-Scan anlegen</h3>
+        <p>Barcode scannen — Titel, Autor und Buchcover erscheinen automatisch. Ideal für Schulbüchereien und Klassensätze. Kein Abtippen, keine Tippfehler.</p>
+      </div>
+      <div class="feature-card">
         <img src="img/feature-qr-scan.svg" alt="QR-Code scannen" class="feature-img">
         <h3>Ausleihe per QR-Scan</h3>
         <p>Jedes Gerät bekommt einen QR-Code. Ausleihe und Rückgabe per Handy-Kamera — in wenigen Sekunden, ohne Tippen.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">🏷️</div>
+        <span class="feature-badge">Neu</span>
+        <h3>Jedes Gerät einzeln im Blick</h3>
+        <p>Auch bei Klassensätzen: jedes Exemplar mit eigenem Code, Standort und Status. Defekte werden einzeln markiert — Sie wissen immer, welches Stück wo ist.</p>
       </div>
       <div class="feature-card">
         <img src="img/feature-inventar.svg" alt="Inventar verwalten" class="feature-img">
@@ -645,12 +688,7 @@
       <div class="feature-card">
         <img src="img/feature-ausleihe.svg" alt="Geräte ausleihen" class="feature-img">
         <h3>Ausleihe mit Rückgabe-Termin</h3>
-        <p>Geräte lassen sich mit Rückgabedatum verleihen. So weiß jeder sofort: wer hat was, und bis wann.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🌐</div>
-        <h3>Läuft überall — als App</h3>
-        <p>Schulinventar ist eine PWA: läuft im Browser, ist auf dem Handy wie eine App installierbar — ohne App-Store, ohne Update-Zwang.</p>
+        <p>Geräte lassen sich mit Rückgabedatum verleihen. So weiß jeder sofort: wer hat was, und bis wann. Änderungen erscheinen dank Live-Updates sofort bei allen.</p>
       </div>
     </div>
   </div>
@@ -679,7 +717,7 @@
       <div class="usp-card">
         <div class="usp-icon">🔒</div>
         <h3>Eigener Server — voller Datenschutz</h3>
-        <p>Jede Schule bekommt einen <span class="usp-highlight">eigenen, isolierten Server</span>. Ihre Daten liegen nicht neben denen anderer Schulen. Täglich automatische Backups, Betrieb in Deutschland.</p>
+        <p>Jede Schule bekommt einen <span class="usp-highlight">eigenen, isolierten Server</span>. Ihre Daten liegen nicht neben denen anderer Schulen. Täglich automatische Backups, Betrieb in Deutschland. Die Schule entscheidet selbst, welche Informationen für wen sichtbar sind — datensparsam ab Werk.</p>
       </div>
       <div class="usp-card">
         <div class="usp-icon">⚡</div>
@@ -706,7 +744,7 @@
       <div class="step">
         <div class="step-num">1</div>
         <h3>Ein Tag vor Ort — wir erledigen alles</h3>
-        <p>Wir richten Ihren Server ein, erfassen gemeinsam mit Ihnen den kompletten Gerätebestand und drucken die QR-Code-Etiketten. Abschluss: kurze Schulung für Ihr Team. Sie müssen nichts vorbereiten.</p>
+        <p>Wir richten Ihren Server ein und erfassen gemeinsam mit Ihnen den kompletten Gerätebestand — dank KI-Bilderkennung in Rekordzeit. QR-Etiketten werden direkt gedruckt. Abschluss: kurze Schulung für Ihr Team. Sie müssen nichts vorbereiten.</p>
       </div>
       <div class="step">
         <div class="step-num">2</div>
