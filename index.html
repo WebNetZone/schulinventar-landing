@@ -323,6 +323,29 @@
     .feature-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
     .feature-card p  { font-size: .92rem; color: var(--text-muted); }
 
+    .feature-extras {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    .extra-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-size: .9rem;
+      color: var(--text-muted);
+    }
+
+    .extra-item b { color: var(--blue-dark); font-weight: 600; }
+    .extra-item .extra-icon { font-size: 1.2rem; }
+
     /* ─── MOCKUP ──────────────────────────────────────────── */
 
     .mockup-section { background: var(--blue-faint); }
@@ -689,6 +712,17 @@
         <img src="img/feature-ausleihe.svg" alt="Geräte ausleihen" class="feature-img">
         <h3>Ausleihe mit Rückgabe-Termin</h3>
         <p>Geräte lassen sich mit Rückgabedatum verleihen. So weiß jeder sofort: wer hat was, und bis wann. Änderungen erscheinen dank Live-Updates sofort bei allen.</p>
+      </div>
+    </div>
+
+    <div class="feature-extras">
+      <div class="extra-item">
+        <span class="extra-icon">🗂️</span>
+        <span><b>Produktvorlagen</b> — wiederkehrende Geräte mit einem Klick anlegen</span>
+      </div>
+      <div class="extra-item">
+        <span class="extra-icon">🖨️</span>
+        <span><b>QR-Etiketten nach Maß</b> — frei einstellbares Druck-Layout, mit Druckverlauf</span>
       </div>
     </div>
   </div>
