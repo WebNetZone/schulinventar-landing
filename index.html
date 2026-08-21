@@ -583,9 +583,145 @@
       .price-divider { width: 100%; height: 1px; margin: 0; }
       .hero-actions { flex-direction: column; align-items: center; }
     }
+    /* ─── BEWEGUNG & EFFEKTE ──────────────────────────────── */
+
+    /* Scroll-Reveal – greift nur, wenn das Skript läuft.
+       Ohne JS bleibt die Seite ganz normal sichtbar. */
+    html.js-anim .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity .75s cubic-bezier(.16,1,.3,1),
+                  transform .75s cubic-bezier(.16,1,.3,1);
+      transition-delay: var(--d, 0ms);
+    }
+    html.js-anim .reveal.in { opacity: 1; transform: none; }
+
+    /* Auftritt im Hero */
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .hero-eyebrow, .hero h1, .hero-sub, .hero-actions, .hero-visual {
+      animation: riseIn .85s cubic-bezier(.16,1,.3,1) both;
+    }
+    .hero h1      { animation-delay: .08s; }
+    .hero-sub     { animation-delay: .16s; }
+    .hero-actions { animation-delay: .24s; }
+    .hero-visual  { animation-delay: .18s; }
+
+    /* Sanft schwebendes Handy */
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-13px); }
+    }
+    .hero-visual img { animation: floaty 6.5s ease-in-out 1.2s infinite; }
+
+    /* Lichtschein hinter dem Hero */
+    .hero { position: relative; overflow: hidden; }
+    .hero > .container { position: relative; z-index: 1; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -34%; right: -12%;
+      width: 620px; height: 620px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(58,122,254,.17) 0%, rgba(58,122,254,0) 66%);
+      pointer-events: none;
+      animation: glow 16s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(-46px, 34px) scale(1.14); }
+    }
+
+    /* Nav wird beim Scrollen kompakter */
+    nav { transition: background .3s, box-shadow .3s, border-color .3s; }
+    .nav-inner { transition: height .3s cubic-bezier(.16,1,.3,1); }
+    nav.scrolled {
+      background: rgba(255,255,255,.8);
+      backdrop-filter: blur(14px) saturate(150%);
+      box-shadow: 0 2px 22px rgba(26,53,96,.09);
+      border-bottom-color: transparent;
+    }
+    nav.scrolled .nav-inner { height: 54px; }
+
+    /* Lesefortschritt */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px; width: 100%;
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      background: linear-gradient(90deg, var(--blue-mid), var(--blue-light));
+      z-index: 200;
+      pointer-events: none;
+    }
+
+    /* Mehr Tiefe auf den Karten */
+    .btn { transition: background .2s, transform .18s, box-shadow .22s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(58,122,254,.34); }
+    .btn-outline:hover { transform: translateY(-2px); }
+
+    .feature-card {
+      transition: box-shadow .32s cubic-bezier(.16,1,.3,1),
+                  transform .32s cubic-bezier(.16,1,.3,1),
+                  border-color .32s;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 46px rgba(26,53,96,.13);
+      border-color: var(--blue-light);
+    }
+    .feature-img { transition: transform .45s cubic-bezier(.16,1,.3,1); }
+    .feature-card:hover .feature-img { transform: scale(1.035); }
+
+    .ps-card, .pricing-card { transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s; }
+    .ps-card:hover, .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 42px rgba(26,53,96,.12);
+    }
+
+    .usp-card { transition: transform .3s cubic-bezier(.16,1,.3,1), background .3s, border-color .3s; }
+    .usp-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,.1);
+      border-color: rgba(255,255,255,.22);
+    }
+
+    .extra-item { transition: transform .25s, border-color .25s, box-shadow .25s; }
+    .extra-item:hover {
+      transform: translateY(-2px);
+      border-color: var(--blue-mid);
+      box-shadow: 0 8px 22px rgba(26,53,96,.09);
+    }
+
+    .step-num { transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .3s; }
+    .step:hover .step-num {
+      transform: scale(1.08);
+      box-shadow: 0 10px 28px rgba(58,122,254,.26);
+    }
+
+    .mockup-browser { transition: transform .5s cubic-bezier(.16,1,.3,1), box-shadow .5s; }
+    .mockup-browser:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 64px rgba(26,53,96,.2);
+    }
+
+    /* Wer keine Bewegung möchte, bekommt keine */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+      html.js-anim .reveal { opacity: 1 !important; transform: none !important; }
+    }
+
   </style>
 </head>
 <body>
+
+<div class="scroll-progress" aria-hidden="true"></div>
 
 <!-- NAV -->
 <nav>
@@ -681,13 +817,13 @@
     </div>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-emoji">📸</div>
+        <img src="img/feature-foto-ki.svg" alt="Gerät per Foto erfassen" class="feature-img">
         <span class="feature-badge">Neu</span>
         <h3>Geräte per Foto erfassen</h3>
         <p>Einfach ein Foto machen — die App erkennt das Gerät und füllt Name, Kategorie und Standort automatisch aus. Sie prüfen nur noch kurz. So ist der Bestand in Rekordzeit erfasst.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-emoji">📖</div>
+        <img src="img/feature-isbn.svg" alt="Buch per ISBN-Scan anlegen" class="feature-img">
         <span class="feature-badge">Neu</span>
         <h3>Bücher per ISBN-Scan anlegen</h3>
         <p>Barcode scannen — Titel, Autor und Buchcover erscheinen automatisch. Ideal für Schulbüchereien und Klassensätze. Kein Abtippen, keine Tippfehler.</p>
@@ -698,7 +834,7 @@
         <p>Jedes Gerät bekommt einen QR-Code. Ausleihe und Rückgabe per Handy-Kamera — in wenigen Sekunden, ohne Tippen.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-emoji">🏷️</div>
+        <img src="img/feature-exemplare.svg" alt="Jedes Exemplar einzeln verwalten" class="feature-img">
         <span class="feature-badge">Neu</span>
         <h3>Jedes Gerät einzeln im Blick</h3>
         <p>Auch bei Klassensätzen: jedes Exemplar mit eigenem Code, Standort und Status. Defekte werden einzeln markiert — Sie wissen immer, welches Stück wo ist.</p>
@@ -896,5 +1032,60 @@
   </div>
 </footer>
 
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Lesefortschritt oben
+  var bar = document.querySelector('.scroll-progress');
+  function progress() {
+    var max = document.body.scrollHeight - window.innerHeight;
+    var p = max > 0 ? window.scrollY / max : 0;
+    if (bar) bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+  }
+
+  // Nav kompakter, sobald gescrollt wird
+  var nav = document.querySelector('nav');
+  function navState() {
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 24);
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { progress(); navState(); ticking = false; });
+  }, { passive: true });
+  progress(); navState();
+
+  if (reduce || !('IntersectionObserver' in window)) return;
+
+  // Was beim Scrollen eingeblendet wird – gestaffelt pro Gruppe
+  root.classList.add('js-anim');
+  var groups = [
+    '.section-header', '.ps-card', '.feature-card', '.extra-item',
+    '.usp-card', '.step', '.pricing-card', '.mockup-browser',
+    '.contact-inner', '.contact-card'
+  ];
+  groups.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el, i) {
+      el.classList.add('reveal');
+      el.style.setProperty('--d', Math.min(i, 5) * 90 + 'ms');
+    });
+  });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 300" fill="none" font-family="'Segoe UI', system-ui, -apple-system, Roboto, sans-serif">
+  <defs>
+    <linearGradient id="fkbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef4ff"/>
+      <stop offset="1" stop-color="#f7faff"/>
+    </linearGradient>
+    <filter id="fkShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#2f6fe0" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect width="380" height="300" rx="28" fill="url(#fkbg)"/>
+  <circle cx="66" cy="70" r="64" fill="#3880ff" opacity="0.07"/>
+
+  <!-- Foto-Karte -->
+  <g filter="url(#fkShadow)">
+    <rect x="52" y="52" width="140" height="122" rx="18" fill="#ffffff"/>
+  </g>
+  <rect x="64" y="64" width="116" height="80" rx="12" fill="#eef4ff"/>
+  <!-- Beamer im Bild -->
+  <g stroke="#3880ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <rect x="90" y="90" width="50" height="30" rx="5"/>
+    <circle cx="115" cy="105" r="8"/>
+    <path d="M84 128h62"/>
+  </g>
+  <!-- Auslöser -->
+  <circle cx="122" cy="158" r="9" fill="none" stroke="#aab6cc" stroke-width="2.6"/>
+
+  <!-- Funken -->
+  <g fill="#3880ff">
+    <path d="M206 74l4.4 10.6L221 89l-10.6 4.4L206 104l-4.4-10.6L191 89l10.6-4.4z"/>
+    <path d="M232 106l2.4 5.8 5.8 2.4-5.8 2.4-2.4 5.8-2.4-5.8-5.8-2.4 5.8-2.4z" opacity=".75"/>
+  </g>
+
+  <!-- Automatisch ausgefülltes Formular -->
+  <g filter="url(#fkShadow)">
+    <rect x="196" y="128" width="132" height="96" rx="16" fill="#ffffff"/>
+  </g>
+  <g>
+    <rect x="210" y="144" width="40" height="6" rx="3" fill="#aab6cc"/>
+    <rect x="210" y="155" width="86" height="9" rx="4.5" fill="#1f2a44"/>
+    <rect x="210" y="176" width="40" height="6" rx="3" fill="#aab6cc"/>
+    <rect x="210" y="187" width="66" height="9" rx="4.5" fill="#1f2a44"/>
+    <rect x="210" y="208" width="104" height="6" rx="3" fill="#cdd8ea"/>
+  </g>
+
+  <!-- Erfolg -->
+  <g filter="url(#fkShadow)">
+    <circle cx="322" cy="134" r="20" fill="#1eb85f"/>
+  </g>
+  <path d="M314 134l5.5 5.5L330 129" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <text x="190" y="262" font-size="18" font-weight="800" fill="#1f2a44" text-anchor="middle">Foto genügt</text>
+  <text x="190" y="282" font-size="12.5" fill="#7c89a3" text-anchor="middle">Die KI erkennt das Gerät und füllt aus</text>
+</svg>
