@@ -1069,7 +1069,7 @@
       /* Bedienelemente und Zierrat gehoeren nicht aufs Papier */
       nav, .mobile-menu, .menu-toggle, .scroll-progress, .skip-link,
       .hero-grid, .hero-visual, .mockup-section, .hero-actions,
-      .feature-img, .btn { display: none !important; }
+      .feature-img, .btn, .copy-mail { display: none !important; }
       /* Alle Zier-Pseudoelemente: sie sind absolut positioniert und
          wuerden als Farbschleier auf sonst leeren Seiten landen. */
       .hero::before, .hero::after, .usp::before,
@@ -1132,6 +1132,29 @@
         font-size: 8pt; color: #5b6a85;
       }
     }
+
+
+    /* ─── ADRESSE KOPIEREN ────────────────────────────────────
+       Ein mailto-Link laeuft ins Leere, wenn kein Mailprogramm
+       eingerichtet ist – auf Rechnern in Sekretariaten die Regel.
+       Dann bleibt dieser Weg. */
+
+    .copy-mail {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 10px 20px; border-radius: 10px;
+      font-family: 'DM Sans', sans-serif; font-size: .88rem; font-weight: 500;
+      color: var(--text-muted);
+      background: var(--white);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      transition: color .25s var(--ease), border-color .25s var(--ease), background .25s;
+    }
+    .copy-mail:hover { color: var(--blue-dark); border-color: var(--blue-mid); background: var(--blue-faint); }
+    .copy-mail svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .copy-mail.done { color: #157f5f; border-color: #6ec6a8; background: #eefaf5; }
+    .copy-mail .ic-check { display: none; }
+    .copy-mail.done .ic-copy { display: none; }
+    .copy-mail.done .ic-check { display: block; }
 
     /* ─── HANDY-MENÜ ──────────────────────────────────────── */
 
@@ -1517,6 +1540,11 @@
         <a href="https://webnetzone.de" target="_blank" rel="noopener">webnetzone.de</a>
       </div>
       <a href="mailto:info@webnetzone.de" class="btn btn-primary btn-lg" style="margin-top:8px;">Demo anfragen</a>
+      <button type="button" class="copy-mail" data-copy="info@webnetzone.de">
+        <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span class="label">Adresse kopieren</span>
+      </button>
     </div>
   </div>
 </section>
@@ -1612,6 +1640,43 @@
       if (window.innerWidth > 900 && menu.classList.contains('open')) setMenu(false);
     });
   }
+
+
+  // E-Mail-Adresse in die Zwischenablage
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    var label = btn.querySelector('.label');
+    var original = label ? label.textContent : '';
+    var timer;
+
+    function done(ok) {
+      btn.classList.toggle('done', ok);
+      if (label) label.textContent = ok ? 'Kopiert' : 'Bitte von Hand kopieren';
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        btn.classList.remove('done');
+        if (label) label.textContent = original;
+      }, 2600);
+    }
+
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function () { done(true); },
+                                                 function () { done(false); });
+        return;
+      }
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      done(ok);
+    });
+  });
 
   if (reduce || !('IntersectionObserver' in window)) return;
 
