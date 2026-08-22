@@ -6,10 +6,18 @@
   <meta name="robots" content="index, follow, max-image-preview:large">
   <title>Schulinventar – Inventarverwaltung für Schulen</title>
   <meta name="description" content="Schluss mit Excel-Chaos. Schulinventar bringt Ordnung in Ihre Geräteverwaltung – sicher, schlank und einfach.">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#3880ff">
 
   <!-- Beim Teilen per Mail, WhatsApp oder Messenger -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <!-- PNG als Rueckfallebene: Safari und aeltere Browser sind mit
+       SVG-Favicons unzuverlaessig -->
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1b33">
+
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Schulinventar">
   <meta property="og:locale" content="de_DE">
@@ -23,7 +31,6 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://schulinventar.webnetzone.de/og-image.png">
   <link rel="canonical" href="https://schulinventar.webnetzone.de/">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta name="twitter:title" content="Schulinventar – Inventar und Ausleihe für Schulen">
   <meta name="twitter:description" content="Schluss mit Excel-Chaos. Geräte und Bücher scannen, ausleihen, zurückbuchen – auf jedem Gerät.">
 
@@ -1572,6 +1579,70 @@
   }
 
 
+
+
+  // Das Symbol im Tab: die drei Gegenstaende stellen sich einmal
+  // in die Regalreihen. Laeuft genau einmal, danach wieder das SVG.
+  (function animateFavicon() {
+    if (reduce || document.hidden) return;
+    var link = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+    if (!link || !window.requestAnimationFrame) return;
+
+    var cv = document.createElement('canvas');
+    cv.width = cv.height = 64;
+    var c = cv.getContext('2d');
+    if (!c) return;
+
+    var RAILS = [[14,18,36,4],[14,30,36,4],[14,42,36,4],[14,14,4,36],[46,14,4,36]];
+    var ITEMS = [[22,14,8,8],[30,26,10,8],[38,38,8,8]];
+    var DUR = 900, start = null;
+    var original = link.getAttribute('href');
+
+    function ease(t) { return 1 - Math.pow(1 - t, 3); }
+    function rr(x, y, w, h, r) {
+      c.beginPath();
+      if (c.roundRect) { c.roundRect(x, y, w, h, r); } else { c.rect(x, y, w, h); }
+      c.fill();
+    }
+
+    function frame(now) {
+      if (start === null) start = now;
+      var t = Math.min((now - start) / DUR, 1);
+      var e = ease(t);
+
+      c.clearRect(0, 0, 64, 64);
+      var g = c.createLinearGradient(0, 0, 64, 64);
+      g.addColorStop(0, '#3880ff');
+      g.addColorStop(1, '#2f6fe0');
+      c.fillStyle = g;
+      c.beginPath();
+      if (c.roundRect) { c.roundRect(0, 0, 64, 64, 14); } else { c.rect(0, 0, 64, 64); }
+      c.fill();
+
+      c.fillStyle = 'rgba(255,255,255,.95)';
+      for (var i = 0; i < RAILS.length; i++) {
+        rr(RAILS[i][0], RAILS[i][1], RAILS[i][2], RAILS[i][3], 2);
+      }
+
+      for (var k = 0; k < ITEMS.length; k++) {
+        var at = 0.18 + k * 0.22;
+        var it = Math.min(Math.max((e - at) / 0.3, 0), 1);
+        if (it <= 0) continue;
+        var b = ITEMS[k], f = ease(it);
+        var w = b[2] * f, h = b[3] * f;
+        rr(b[0] + (b[2] - w) / 2, b[1] + (b[3] - h) / 2, w, h, 1.5);
+      }
+
+      try { link.setAttribute('href', cv.toDataURL('image/png')); } catch (err) { return; }
+
+      if (t < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        setTimeout(function () { link.setAttribute('href', original); }, 120);
+      }
+    }
+    requestAnimationFrame(frame);
+  })();
 
   if (reduce || !('IntersectionObserver' in window)) return;
 

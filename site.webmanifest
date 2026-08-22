@@ -1,0 +1,15 @@
+{
+  "name": "Schulinventar – Inventarverwaltung für Schulen",
+  "short_name": "Schulinventar",
+  "description": "Geräte und Bücher an Schulen verwalten, ausleihen und zurückbuchen.",
+  "lang": "de-DE",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#3880ff",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
