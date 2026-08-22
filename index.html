@@ -935,6 +935,23 @@
     }
 
 
+
+    /* Herstellerhinweis in der Fußzeile – die Firmenmarke einfarbig,
+       damit sie der blauen Produktmarke oben nicht die Schau stiehlt. */
+    .made-by {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: rgba(255,255,255,.55);
+      font-size: .85rem;
+      text-decoration: none;
+      transition: color .25s var(--ease);
+    }
+    .made-by:hover { color: var(--white); text-decoration: none; }
+    .made-by .wnz-mark { width: 26px; height: auto; flex-shrink: 0; }
+    .made-by b { font-weight: 600; letter-spacing: -.01em; }
+    .footer-inner .copy { color: rgba(255,255,255,.4); font-size: .82rem; }
+
     /* ─── HANDY-MENÜ ──────────────────────────────────────── */
 
     .menu-toggle {
@@ -1354,7 +1371,12 @@
         <a href="https://webnetzone.de/impressum" target="_blank" rel="noopener">Impressum</a>
         <a href="https://webnetzone.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
       </div>
-      <span>© 2026 WebNetZone</span>
+      <a class="made-by" href="https://webnetzone.de" target="_blank" rel="noopener">
+        <span>Ein Produkt von</span>
+        <svg class="wnz-mark" viewBox="0 0 54.8 40.8" fill="none" aria-hidden="true"><path d="M4.40 4.40 L14.98 36.40 L27.40 15.40 L39.82 36.40 L50.40 4.40" fill="none" stroke="currentColor" stroke-width="4.20" stroke-linecap="round" stroke-linejoin="round"/><g fill="currentColor"><circle cx="4.40" cy="4.40" r="4.40"/><circle cx="14.98" cy="36.40" r="4.40"/><circle cx="27.40" cy="15.40" r="4.40"/><circle cx="39.82" cy="36.40" r="4.40"/><circle cx="50.40" cy="4.40" r="4.40"/></g></svg>
+        <b>WebNetZone</b>
+      </a>
+      <span class="copy">© 2026</span>
     </div>
   </div>
 </footer>
