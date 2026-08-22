@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <title>Schulinventar – Inventarverwaltung für Schulen</title>
   <meta name="description" content="Schluss mit Excel-Chaos. Schulinventar bringt Ordnung in Ihre Geräteverwaltung – sicher, schlank und einfach.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -16,10 +16,82 @@
   <meta property="og:url" content="https://schulinventar.webnetzone.de/">
   <meta property="og:title" content="Schulinventar – Inventar und Ausleihe für Schulen">
   <meta property="og:description" content="Schluss mit Excel-Chaos. Geräte und Bücher scannen, ausleihen, zurückbuchen – auf jedem Gerät, mit Ihren Daten auf Ihrem eigenen Server.">
+  <meta property="og:image" content="https://schulinventar.webnetzone.de/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Schulinventar – Inventar und Ausleihe für Schulen, ohne Excel-Chaos.">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://schulinventar.webnetzone.de/og-image.png">
+  <link rel="canonical" href="https://schulinventar.webnetzone.de/">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta name="twitter:title" content="Schulinventar – Inventar und Ausleihe für Schulen">
   <meta name="twitter:description" content="Schluss mit Excel-Chaos. Geräte und Bücher scannen, ausleihen, zurückbuchen – auf jedem Gerät.">
 
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://schulinventar.webnetzone.de/#app",
+        "name": "Schulinventar",
+        "url": "https://schulinventar.webnetzone.de/",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Inventarverwaltung",
+        "operatingSystem": "Web-Browser (Chrome, Safari, Firefox, Edge)",
+        "description": "Web-App zur Verwaltung von Geräten und Büchern an Schulen. Ausleihe und Rückgabe per QR-Scan, eigener Server pro Schule, unbegrenzte Nutzer.",
+        "inLanguage": "de-DE",
+        "image": "https://schulinventar.webnetzone.de/og-image.png",
+        "screenshot": "https://schulinventar.webnetzone.de/img/mockup-browser-admin.svg",
+        "featureList": [
+          "Ausleihe und Rückgabe per QR-Scan",
+          "Geräte per Foto erfassen",
+          "Bücher per ISBN-Scan anlegen",
+          "Einzelne Exemplare verwalten",
+          "Eigener Server pro Schule",
+          "Unbegrenzte Nutzer",
+          "Tägliche Backups, Hosting in Deutschland"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "59.00",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/InStock",
+          "description": "59 € pro Monat für Betrieb und Support, zuzüglich 990 € einmalig für den Vor-Ort-Tag inklusive Einrichtung, Bestandserfassung und Schulung.",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "59.00",
+            "priceCurrency": "EUR",
+            "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitCode": "MON" }
+          }
+        },
+        "provider": {
+          "@type": "Organization",
+          "name": "WebNetZone",
+          "url": "https://webnetzone.de/",
+          "email": "info@webnetzone.de",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Davenstedter Straße 64",
+            "postalCode": "30453",
+            "addressLocality": "Hannover",
+            "addressCountry": "DE"
+          }
+        },
+        "audience": { "@type": "Audience", "audienceType": "Schulen und Schulträger" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://schulinventar.webnetzone.de/#website",
+        "url": "https://schulinventar.webnetzone.de/",
+        "name": "Schulinventar",
+        "inLanguage": "de-DE",
+        "publisher": { "@type": "Organization", "name": "WebNetZone", "url": "https://webnetzone.de/" }
+      }
+    ]
+  }
+  </script>
   <style>
     /* Schriften liegen lokal – kein Umweg über Google */
     @font-face {
@@ -1112,7 +1184,7 @@
         </ul>
       </div>
       <div class="hero-visual">
-        <img src="img/hero-app-phone.svg" alt="Schulinventar App auf dem Smartphone">
+        <img src="img/hero-app-phone.svg" alt="Schulinventar App auf dem Smartphone" width="440" height="780">
       </div>
     </div>
   </div>
@@ -1161,35 +1233,35 @@
     </div>
     <div class="features-grid">
       <div class="feature-card">
-        <img src="img/feature-foto-ki.svg" alt="Gerät per Foto erfassen" class="feature-img">
+        <img src="img/feature-foto-ki.svg" alt="Gerät per Foto erfassen" class="feature-img" width="380" height="300" loading="lazy" decoding="async">
         <span class="feature-badge">Neu</span>
         <h3>Geräte per Foto erfassen</h3>
         <p>Einfach ein Foto machen — die App erkennt das Gerät und füllt Name, Kategorie und Standort automatisch aus. Sie prüfen nur noch kurz. So ist der Bestand in Rekordzeit erfasst.</p>
       </div>
       <div class="feature-card">
-        <img src="img/feature-isbn.svg" alt="Buch per ISBN-Scan anlegen" class="feature-img">
+        <img src="img/feature-isbn.svg" alt="Buch per ISBN-Scan anlegen" class="feature-img" width="380" height="300" loading="lazy" decoding="async">
         <span class="feature-badge">Neu</span>
         <h3>Bücher per ISBN-Scan anlegen</h3>
         <p>Barcode scannen — Titel, Autor und Buchcover erscheinen automatisch. Ideal für Schulbüchereien und Klassensätze. Kein Abtippen, keine Tippfehler.</p>
       </div>
       <div class="feature-card">
-        <img src="img/feature-qr-scan.svg" alt="QR-Code scannen" class="feature-img">
+        <img src="img/feature-qr-scan.svg" alt="QR-Code scannen" class="feature-img" width="380" height="300" loading="lazy" decoding="async">
         <h3>Ausleihe per QR-Scan</h3>
         <p>Jedes Gerät bekommt einen QR-Code. Ausleihe und Rückgabe per Handy-Kamera — in wenigen Sekunden, ohne Tippen.</p>
       </div>
       <div class="feature-card">
-        <img src="img/feature-exemplare.svg" alt="Jedes Exemplar einzeln verwalten" class="feature-img">
+        <img src="img/feature-exemplare.svg" alt="Jedes Exemplar einzeln verwalten" class="feature-img" width="380" height="300" loading="lazy" decoding="async">
         <span class="feature-badge">Neu</span>
         <h3>Jedes Gerät einzeln im Blick</h3>
         <p>Auch bei Klassensätzen: jedes Exemplar mit eigenem Code, Standort und Status. Defekte werden einzeln markiert — Sie wissen immer, welches Stück wo ist.</p>
       </div>
       <div class="feature-card">
-        <img src="img/feature-inventar.svg" alt="Inventar verwalten" class="feature-img">
+        <img src="img/feature-inventar.svg" alt="Inventar verwalten" class="feature-img" width="380" height="300" loading="lazy" decoding="async">
         <h3>Geräte und Bücher</h3>
         <p>Laptops, Tablets, Beamer, Kameras, Klassensätze — alles in einer Anwendung über dieselbe schlanke Logik verwaltet.</p>
       </div>
       <div class="feature-card">
-        <img src="img/feature-ausleihe.svg" alt="Geräte ausleihen" class="feature-img">
+        <img src="img/feature-ausleihe.svg" alt="Geräte ausleihen" class="feature-img" width="380" height="300" loading="lazy" decoding="async">
         <h3>Ausleihe mit Rückgabe-Termin</h3>
         <p>Geräte lassen sich mit Rückgabedatum verleihen. So weiß jeder sofort: wer hat was, und bis wann. Änderungen erscheinen dank Live-Updates sofort bei allen.</p>
       </div>
@@ -1216,7 +1288,7 @@
       <h2 class="section-title">So sieht die Verwaltungsoberfläche aus.</h2>
       <p class="section-sub">Übersichtlich, schnell, ohne Einarbeitungsaufwand.</p>
     </div>
-    <div class="mockup-wrap"><img src="img/mockup-browser-admin.svg" alt="Schulinventar Admin-Oberfläche" class="mockup-browser"></div>
+    <div class="mockup-wrap"><img src="img/mockup-browser-admin.svg" alt="Schulinventar Admin-Oberfläche" class="mockup-browser" width="760" height="500" loading="lazy" decoding="async"></div>
   </div>
 </section>
 
