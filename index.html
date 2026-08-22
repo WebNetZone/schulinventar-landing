@@ -1024,6 +1024,115 @@
     .made-by b { font-weight: 600; letter-spacing: -.01em; }
     .footer-inner .copy { color: rgba(255,255,255,.4); font-size: .82rem; }
 
+
+    /* ─── DRUCK ───────────────────────────────────────────────
+       Schulen drucken die Seite fuer Konferenz und Schulleitung.
+       Im Druckdialog sind Hintergrundgrafiken standardmaessig AUS,
+       deshalb darf hier nichts von einem Hintergrund abhaengen –
+       insbesondere nicht die Verlaufsschrift, die sonst als
+       transparenter Text unsichtbar aus dem Drucker kaeme. */
+
+    @media print {
+      @page { size: A4; margin: 15mm 14mm; }
+
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+
+      html, body {
+        background: #fff !important;
+        color: #1f2a44 !important;
+        font-size: 10pt;
+        line-height: 1.5;
+      }
+
+      /* Entscheidend: Die Abschnitte blenden sich per IntersectionObserver
+         beim Scrollen ein. Beim Drucken scrollt niemand, also blieben sie
+         auf opacity 0 - alles unterhalb des ersten Bildschirms kam
+         unsichtbar aus dem Drucker. */
+      html.js-anim .reveal,
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      /* Verlaufsschrift auf eine echte Farbe zurueckholen */
+      .grad-text {
+        background: none !important;
+        -webkit-text-fill-color: #2f6fe0 !important;
+        color: #2f6fe0 !important;
+      }
+
+      /* Bedienelemente und Zierrat gehoeren nicht aufs Papier */
+      nav, .mobile-menu, .menu-toggle, .scroll-progress, .skip-link,
+      .hero-grid, .hero-visual, .mockup-section, .hero-actions,
+      .feature-img, .btn { display: none !important; }
+      /* Alle Zier-Pseudoelemente: sie sind absolut positioniert und
+         wuerden als Farbschleier auf sonst leeren Seiten landen. */
+      .hero::before, .hero::after, .usp::before,
+      .btn-primary::after, .usp-card::after,
+      .feature-card::after, .ps-card::after { display: none !important; }
+
+      .container { max-width: none !important; padding: 0 !important; }
+      /* Kein break-inside auf ganzen Sektionen: sie sind zu gross,
+         der Inhalt rutscht auf die naechste Seite und laesst eine
+         leere eingefaerbte Flaeche zurueck. Nur Karten schuetzen. */
+      section { padding: 12pt 0 !important; background: none !important; }
+      .hero { padding: 0 0 12pt !important; min-height: 0 !important; }
+
+      h1 { font-size: 21pt !important; margin-bottom: 8pt !important; }
+      .section-title { font-size: 15pt !important; }
+      h3, h4 { font-size: 11pt !important; }
+      p, li { font-size: 10pt !important; }
+      .hero-sub, .section-sub { font-size: 10.5pt !important; }
+
+      /* Nebeneinander statt untereinander – spart Seiten */
+      .hero-inner { grid-template-columns: 1fr !important; }
+      .ps-grid { grid-template-columns: 1fr 1fr !important; gap: 12pt !important; }
+      .features-grid { grid-template-columns: 1fr 1fr !important; gap: 10pt !important; }
+      .usp-grid { grid-template-columns: 1fr 1fr !important; gap: 10pt !important; }
+      .steps { grid-template-columns: repeat(4, 1fr) !important; gap: 8pt !important; }
+      .steps::before { display: none !important; }
+
+      .ps-card, .feature-card, .usp-card, .pricing-card, .step {
+        background: none !important;
+        border: 0.6pt solid #b9c4d8 !important;
+        padding: 10pt !important;
+        break-inside: avoid;
+      }
+
+      /* Der Preisblock ist der Grund, warum gedruckt wird */
+      .preise { break-before: page; }
+      .pricing-card { border-width: 1pt !important; }
+      .amount { color: #1a3560 !important; }
+
+      /* Kontaktangaben muessen auf dem Ausdruck stehen */
+      /* Die USP- und Kontakt-Sektion setzen weisse Schrift fuer ihren
+         dunklen Grund. Ohne Hintergrund druckt das weiss auf weiss,
+         deshalb muessen auch alle Kindelemente umgefaerbt werden. */
+      .problem-solution, .usp, .ablauf, .preise, .kontakt {
+        background: none !important; color: #1f2a44 !important; }
+      .usp *, .kontakt * { color: #1f2a44 !important; }
+      strong, b { color: #1a3560 !important; }
+      .usp .section-label, .kontakt .section-label,
+      .usp-highlight { color: #2f6fe0 !important; }
+      .kontakt *, .kontakt a { color: #1f2a44 !important; }
+
+      footer { background: none !important; border-top: 0.6pt solid #b9c4d8;
+               padding: 8pt 0 !important; }
+      footer *, .footer-links a, .made-by { color: #47536b !important; }
+
+      /* Externe Verweise als Text ausschreiben, sonst sind sie auf
+         Papier wertlos */
+      a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 8pt; color: #5b6a85;
+      }
+    }
+
     /* ─── HANDY-MENÜ ──────────────────────────────────────── */
 
     .menu-toggle {
