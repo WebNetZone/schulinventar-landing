@@ -1069,104 +1069,24 @@
       /* Bedienelemente und Zierrat gehoeren nicht aufs Papier */
       nav, .mobile-menu, .menu-toggle, .scroll-progress, .skip-link,
       .hero-grid, .hero-visual, .mockup-section, .hero-actions,
-      .feature-img, .btn, .copy-mail { display: none !important; }
-      .flyer-link { color: #1f2a44 !important; }
-      /* Alle Zier-Pseudoelemente: sie sind absolut positioniert und
-         wuerden als Farbschleier auf sonst leeren Seiten landen. */
-      .hero::before, .hero::after, .usp::before,
-      .btn-primary::after, .usp-card::after,
-      .feature-card::after, .ps-card::after { display: none !important; }
-
-      .container { max-width: none !important; padding: 0 !important; }
-      /* Kein break-inside auf ganzen Sektionen: sie sind zu gross,
-         der Inhalt rutscht auf die naechste Seite und laesst eine
-         leere eingefaerbte Flaeche zurueck. Nur Karten schuetzen. */
-      section { padding: 12pt 0 !important; background: none !important; }
-      .hero { padding: 0 0 12pt !important; min-height: 0 !important; }
-
-      h1 { font-size: 21pt !important; margin-bottom: 8pt !important; }
-      .section-title { font-size: 15pt !important; }
-      h3, h4 { font-size: 11pt !important; }
-      p, li { font-size: 10pt !important; }
-      .hero-sub, .section-sub { font-size: 10.5pt !important; }
-
-      /* Nebeneinander statt untereinander – spart Seiten */
-      .hero-inner { grid-template-columns: 1fr !important; }
-      .ps-grid { grid-template-columns: 1fr 1fr !important; gap: 12pt !important; }
-      .features-grid { grid-template-columns: 1fr 1fr !important; gap: 10pt !important; }
-      .usp-grid { grid-template-columns: 1fr 1fr !important; gap: 10pt !important; }
-      .steps { grid-template-columns: repeat(4, 1fr) !important; gap: 8pt !important; }
-      .steps::before { display: none !important; }
-
-      .ps-card, .feature-card, .usp-card, .pricing-card, .step {
-        background: none !important;
-        border: 0.6pt solid #b9c4d8 !important;
-        padding: 10pt !important;
-        break-inside: avoid;
-      }
-
-      /* Der Preisblock ist der Grund, warum gedruckt wird */
-      .preise { break-before: page; }
-      .pricing-card { border-width: 1pt !important; }
-      .amount { color: #1a3560 !important; }
-
-      /* Kontaktangaben muessen auf dem Ausdruck stehen */
-      /* Die USP- und Kontakt-Sektion setzen weisse Schrift fuer ihren
-         dunklen Grund. Ohne Hintergrund druckt das weiss auf weiss,
-         deshalb muessen auch alle Kindelemente umgefaerbt werden. */
-      .problem-solution, .usp, .ablauf, .preise, .kontakt {
-        background: none !important; color: #1f2a44 !important; }
-      .usp *, .kontakt * { color: #1f2a44 !important; }
-      strong, b { color: #1a3560 !important; }
-      .usp .section-label, .kontakt .section-label,
-      .usp-highlight { color: #2f6fe0 !important; }
-      .kontakt *, .kontakt a { color: #1f2a44 !important; }
-
-      footer { background: none !important; border-top: 0.6pt solid #b9c4d8;
-               padding: 8pt 0 !important; }
-      footer *, .footer-links a, .made-by { color: #47536b !important; }
-
-      /* Externe Verweise als Text ausschreiben, sonst sind sie auf
-         Papier wertlos */
-      a[href^="http"]::after {
-        content: " (" attr(href) ")";
-        font-size: 8pt; color: #5b6a85;
-      }
+      .feature-img, .btn { display: none !important; }
+      /* Der Flyer-Verweis bleibt auf Papier stehen, aber in Textfarbe */
+      .flyer-btn { border-color: #b9c4d8 !important; color: #1f2a44 !important; }
+      .flyer-btn .hint { color: #5b6a85 !important; }
     }
 
-
-    /* ─── ADRESSE KOPIEREN ────────────────────────────────────
-       Ein mailto-Link laeuft ins Leere, wenn kein Mailprogramm
-       eingerichtet ist – auf Rechnern in Sekretariaten die Regel.
-       Dann bleibt dieser Weg. */
-
-    .copy-mail {
-      display: inline-flex; align-items: center; gap: 9px;
-      padding: 10px 20px; border-radius: 10px;
-      font-family: 'DM Sans', sans-serif; font-size: .88rem; font-weight: 500;
+    .flyer-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 13px 26px;
+    }
+    .flyer-btn svg { width: 17px; height: 17px; flex-shrink: 0; }
+    .flyer-btn .hint {
+      font-size: .78rem; font-weight: 500;
       color: var(--text-muted);
-      background: var(--white);
-      border: 1px solid var(--line);
-      cursor: pointer;
-      transition: color .25s var(--ease), border-color .25s var(--ease), background .25s;
+      border-left: 1px solid var(--line);
+      padding-left: 10px; margin-left: 2px;
     }
-    .copy-mail:hover { color: var(--blue-dark); border-color: var(--blue-mid); background: var(--blue-faint); }
-    .copy-mail svg { width: 16px; height: 16px; flex-shrink: 0; }
-    .copy-mail.done { color: #157f5f; border-color: #6ec6a8; background: #eefaf5; }
-    .copy-mail .ic-check { display: none; }
-    .copy-mail.done .ic-copy { display: none; }
-    .copy-mail.done .ic-check { display: block; }
-
-    .flyer-link {
-      display: inline-flex; align-items: center; gap: 9px;
-      font-size: .88rem; font-weight: 500;
-      color: var(--blue-mid);
-      text-decoration: none;
-      padding: 8px 4px;
-      transition: color .25s var(--ease);
-    }
-    .flyer-link:hover { color: var(--blue-dark); text-decoration: underline; }
-    .flyer-link svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .flyer-btn:hover .hint { color: var(--blue-mid); }
 
     /* ─── HANDY-MENÜ ──────────────────────────────────────── */
 
@@ -1552,14 +1472,10 @@
         <a href="https://webnetzone.de" target="_blank" rel="noopener">webnetzone.de</a>
       </div>
       <a href="mailto:info@webnetzone.de" class="btn btn-primary btn-lg" style="margin-top:8px;">Demo anfragen</a>
-      <button type="button" class="copy-mail" data-copy="info@webnetzone.de">
-        <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-        <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <span class="label">Adresse kopieren</span>
-      </button>
-      <a class="flyer-link" href="schulinventar-flyer.pdf" target="_blank" rel="noopener">
+      <a class="btn btn-outline flyer-btn" href="schulinventar-flyer.pdf" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
-        <span>Info-Blatt als PDF · 1 Seite</span>
+        Flyer ansehen
+        <span class="hint">PDF · 1 Seite</span>
       </a>
     </div>
   </div>
@@ -1658,41 +1574,6 @@
   }
 
 
-  // E-Mail-Adresse in die Zwischenablage
-  document.querySelectorAll('[data-copy]').forEach(function (btn) {
-    var label = btn.querySelector('.label');
-    var original = label ? label.textContent : '';
-    var timer;
-
-    function done(ok) {
-      btn.classList.toggle('done', ok);
-      if (label) label.textContent = ok ? 'Kopiert' : 'Bitte von Hand kopieren';
-      clearTimeout(timer);
-      timer = setTimeout(function () {
-        btn.classList.remove('done');
-        if (label) label.textContent = original;
-      }, 2600);
-    }
-
-    btn.addEventListener('click', function () {
-      var text = btn.getAttribute('data-copy');
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text).then(function () { done(true); },
-                                                 function () { done(false); });
-        return;
-      }
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
-      document.body.appendChild(ta);
-      ta.select();
-      var ok = false;
-      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-      document.body.removeChild(ta);
-      done(ok);
-    });
-  });
 
   if (reduce || !('IntersectionObserver' in window)) return;
 
