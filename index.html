@@ -13,6 +13,11 @@
        SVG-Favicons unzuverlaessig -->
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
+  <!-- Google waehlt fuer das Symbol im Suchergebnis ein quadratisches
+       Bild ab 48px, am besten in Vielfachen von 48 -->
+  <link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">
+  <link rel="icon" href="/favicon-96.png" sizes="96x96" type="image/png">
+  <link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
@@ -50,6 +55,12 @@
         "description": "Web-App zur Verwaltung von Geräten und Büchern an Schulen. Ausleihe und Rückgabe per QR-Scan, eigener Server pro Schule, unbegrenzte Nutzer.",
         "inLanguage": "de-DE",
         "image": "https://schulinventar.webnetzone.de/og-image.png",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://schulinventar.webnetzone.de/img/schulinventar-logo-512.png",
+          "width": 512,
+          "height": 512
+        },
         "screenshot": "https://schulinventar.webnetzone.de/img/mockup-browser-admin.svg",
         "featureList": [
           "Ausleihe und Rückgabe per QR-Scan",
@@ -92,7 +103,18 @@
         "url": "https://schulinventar.webnetzone.de/",
         "name": "Schulinventar",
         "inLanguage": "de-DE",
-        "publisher": { "@type": "Organization", "name": "WebNetZone", "url": "https://webnetzone.de/" }
+        "publisher": {
+          "@type": "Organization",
+          "@id": "https://webnetzone.de/#organisation",
+          "name": "WebNetZone",
+          "url": "https://webnetzone.de/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://webnetzone.de/logo/wnz-logo-512.png",
+            "width": 512,
+            "height": 512
+          }
+        }
       }
     ]
   }
