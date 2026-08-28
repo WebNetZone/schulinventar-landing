@@ -69,7 +69,8 @@
           "Einzelne Exemplare verwalten",
           "Eigener Server pro Schule",
           "Unbegrenzte Nutzer",
-          "Tägliche Backups, Hosting in Deutschland"
+          "Tägliche Backups, Hosting in Deutschland",
+          "Anpassung an die Abläufe der einzelnen Schule, bis hin zu eigenen Funktionen"
         ],
         "offers": {
           "@type": "Offer",
@@ -526,9 +527,10 @@
     .usp .section-title { color: var(--white); }
     .usp .section-sub   { color: rgba(255,255,255,.7); }
 
+    /* Vier Karten: zwei Reihen zu zweit statt einer gedraengten Reihe */
     .usp-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 28px;
     }
 
@@ -1388,7 +1390,7 @@
   <div class="container">
     <div class="section-header centered">
       <div class="section-label">Warum Schulinventar</div>
-      <h2 class="section-title" style="color:white">Drei Gründe, die den Unterschied machen.</h2>
+      <h2 class="section-title" style="color:white">Vier Gründe, die den Unterschied machen.</h2>
     </div>
     <div class="usp-grid">
       <div class="usp-card">
@@ -1405,6 +1407,11 @@
         <div class="usp-icon">🤝</div>
         <h3>Persönlich und lokal</h3>
         <p>Kein anonymes Support-Ticket. Ihr Ansprechpartner sitzt in <span class="usp-highlight">Hannover</span>, richtet die Anwendung persönlich ein und ist bei Fragen direkt erreichbar.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon">🛠️</div>
+        <h3>Fehlt etwas? Dann wird es gebaut.</h3>
+        <p>Schulinventar wird von dem entwickelt, der sie auch betreut. Braucht Ihre Schule ein zusätzliches Feld, einen anderen Ablauf oder eine eigene Auswertung, <span class="usp-highlight">wird sie eingebaut</span> — statt dass Sie sich an fertige Software anpassen. Genau deshalb bleibt die App schlank: Sie bekommen, was Ihre Schule braucht, nicht was alle Schulen zusammen brauchen.</p>
       </div>
     </div>
   </div>
@@ -1468,6 +1475,7 @@
         <li>Unbegrenzte Geräte, Bücher und Nutzer</li>
         <li>Tägliche Backups, Hosting in Deutschland</li>
         <li>Updates und Weiterentwicklung inklusive</li>
+        <li>Anpassung an Ihre Abläufe — kleinere inklusive, größere nach Absprache</li>
         <li>Direkter Ansprechpartner, kein Ticketsystem</li>
       </ul>
 
