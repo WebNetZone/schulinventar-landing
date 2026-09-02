@@ -1,5 +1,6 @@
 # https://schulinventar.webnetzone.de
 User-agent: *
 Allow: /
+Disallow: /docs/
 
 Sitemap: https://schulinventar.webnetzone.de/sitemap.xml
