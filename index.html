@@ -67,6 +67,8 @@
           "Geräte per Foto erfassen",
           "Bücher per ISBN-Scan anlegen",
           "Einzelne Exemplare verwalten",
+          "Duplikate erkennen und zusammenführen",
+          "Rückgabe-Prüfung durch den Verwalter",
           "Eigener Server pro Schule",
           "Unbegrenzte Nutzer",
           "Tägliche Backups, Hosting in Deutschland",
@@ -1310,6 +1312,7 @@
           <li data-icon="✓">Jede Ausleihe und Rückgabe ist sekundengenau dokumentiert.</li>
           <li data-icon="✓">Ein Scan mit dem Handy — fertig. Keine doppelte Eingabe.</li>
           <li data-icon="✓">Alle Lehrerinnen und Lehrer arbeiten auf derselben Basis.</li>
+          <li data-icon="✓">Doppelt angelegt? Die App findet gleiche Bücher und Geräte und führt sie zusammen — QR-Codes bleiben gültig.</li>
           <li data-icon="✓">Verwalter behalten den Überblick, ohne alles selbst zu erledigen.</li>
         </ul>
       </div>
@@ -1328,13 +1331,11 @@
     <div class="features-grid">
       <div class="feature-card">
         <img src="img/feature-foto-ki.svg" alt="Gerät per Foto erfassen" class="feature-img" width="380" height="300" loading="lazy" decoding="async">
-        <span class="feature-badge">Neu</span>
         <h3>Geräte per Foto erfassen</h3>
         <p>Einfach ein Foto machen — die App erkennt das Gerät und füllt Name, Kategorie und Standort automatisch aus. Sie prüfen nur noch kurz. So ist der Bestand in Rekordzeit erfasst.</p>
       </div>
       <div class="feature-card">
         <img src="img/feature-isbn.svg" alt="Buch per ISBN-Scan anlegen" class="feature-img" width="380" height="300" loading="lazy" decoding="async">
-        <span class="feature-badge">Neu</span>
         <h3>Bücher per ISBN-Scan anlegen</h3>
         <p>Barcode scannen — Titel, Autor und Buchcover erscheinen automatisch. Ideal für Schulbüchereien und Klassensätze. Kein Abtippen, keine Tippfehler.</p>
       </div>
@@ -1345,7 +1346,6 @@
       </div>
       <div class="feature-card">
         <img src="img/feature-exemplare.svg" alt="Jedes Exemplar einzeln verwalten" class="feature-img" width="380" height="300" loading="lazy" decoding="async">
-        <span class="feature-badge">Neu</span>
         <h3>Jedes Gerät einzeln im Blick</h3>
         <p>Auch bei Klassensätzen: jedes Exemplar mit eigenem Code, Standort und Status. Defekte werden einzeln markiert — Sie wissen immer, welches Stück wo ist.</p>
       </div>
@@ -1357,7 +1357,7 @@
       <div class="feature-card">
         <img src="img/feature-ausleihe.svg" alt="Geräte ausleihen" class="feature-img" width="380" height="300" loading="lazy" decoding="async">
         <h3>Ausleihe mit Rückgabe-Termin</h3>
-        <p>Geräte lassen sich mit Rückgabedatum verleihen. So weiß jeder sofort: wer hat was, und bis wann. Änderungen erscheinen dank Live-Updates sofort bei allen.</p>
+        <p>Geräte lassen sich mit Rückgabedatum verleihen. So weiß jeder sofort: wer hat was, und bis wann. Änderungen erscheinen dank Live-Updates sofort bei allen — und bei wertvollen Geräten bestätigt auf Wunsch der Verwalter die Rückgabe selbst.</p>
       </div>
     </div>
 
@@ -1439,7 +1439,7 @@
       <div class="step">
         <div class="step-num">3</div>
         <h3>Überblick behalten</h3>
-        <p>Der Verwalter sieht jederzeit: Wer hat was? Was fehlt? Was ist defekt? Verlaufsprotokolle, Statusansichten und Erinnerungen halten alles im Griff.</p>
+        <p>Der Verwalter sieht jederzeit: Wer hat was? Was fehlt? Was ist defekt? Verlaufsprotokolle, Statusansichten und Erinnerungen halten alles im Griff. Doppelt angelegte Einträge meldet die App von selbst und führt sie auf Wunsch zusammen — Inventarnummern und gedruckte Etiketten bleiben gültig.</p>
       </div>
     </div>
   </div>
